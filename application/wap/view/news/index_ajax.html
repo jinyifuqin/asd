@@ -1,0 +1,11 @@
+{volist name="dataList" id="vo"}
+	<li class='after'>
+		<a href="{:url('news/detail','id='.$vo['id'])}">
+			<div class="col-xs-4 nb_l"><img src="{$vo.art_img}" alt="{$vo.title}" /></div>
+			<div class="col-xs-8 nb_r">
+				<p>{$vo.title}</p>
+				<span><img src="{$style_path}/images/sj.png" alt="" />{$vo.update_time|date='Y-m-d',###}</span>
+			</div>
+		</a>
+	</li>
+{/volist}

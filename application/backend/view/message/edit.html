@@ -1,0 +1,23 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">		
+		{html:hidden name="id" value="$dataEdit.id"}	
+		{html:input name="user_name" class="input w50" value="$dataEdit.user_name" addstr='data-validate="required:请输入姓名"' label="姓名"}
+		{html:input name="nickname" class="input w50" value="$dataEdit.nickname" label="昵称"}
+		{html:input name="user_phone" class="input w50" value="$dataEdit.user_phone" label="电话"}
+		{html:radio name="type" value=":config('base.message_type')" default="$dataEdit.type" label="留言类型" }
+		{html:textarea name="content" class="input w80" value="$dataEdit.content" label="留言内容"}		
+		{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>				
+	</form>
+{/block}
+{block name="my_script"}
+{/block}

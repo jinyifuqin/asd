@@ -1,0 +1,16 @@
+{extend name="common@tpl/base" /}
+{block name="content"}
+<div class="tips_con_body_down">
+	<ul class="tips_body_list">
+		<li class="tips_body_list_tit">快捷菜单：</li>
+		<li>1.网络信号差</li>
+		<li>2.找不到请求的页面</li>
+		<li>3.服务器内部错误</li>
+	</ul>
+	<ul class="tips_body_list tips_body_list_right">
+		<li class="tips_body_list_tit">您还可以：</li>
+		<li><a href="{:url('index/dashboard')}">&bull;&nbsp;返回控制台</a></li>
+		<li><a id="href" href="<?php echo($url);?>">&bull;&nbsp;立即跳转（<b id="wait"><?php echo($wait);?></b>）秒</a></li>
+	</ul>
+</div>
+{/block}

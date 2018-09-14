@@ -1,0 +1,24 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">	
+		{html:hidden name="id" value="$dataEdit.id"}	
+		{html:input name="cate_name" class="input w50" value="$dataEdit.cate_name" addstr='data-validate="required:请输入栏目名称"' label="栏目名称"}
+		{html:input name="alias_name" class="input w50" value="$dataEdit.alias_name" label="别名"}
+		{html:select name="parent_id" option="cateTree" value="id->cate_name" label="上级栏目" addstr='data-validate="required:请选择上级栏目"' selected="$dataEdit.parent_id" }		
+		{html:select name="type_id" option="proType" value="id->type_name" label="绑定类型" selected="$dataEdit.type_id" }
+		{html:fileImg name="cate_img" class="input w50" value="$dataEdit.cate_img" label="缩略图"}
+		{html:input name="cate_link" class="input w50" value="$dataEdit.cate_link" label="栏目链接"}					
+		
+		{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }
+		{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

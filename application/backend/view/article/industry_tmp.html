@@ -1,0 +1,27 @@
+			<div class="form-group">
+				<div class="label"><label>所属行业：</label></div>
+				<div class="field">
+					<div class="button-group border-main checkbox">
+						<input type="hidden" name="industry_id_checked" value="{$dataEdit.industry_id}">
+						{volist name="industryTree" id="vo"}
+						<label class="button"><input name="industry_id[]" value="{$vo.id}" type="checkbox">{$vo.industry_name}<span class="icon-arrow-right"></span></label>
+						{if condition="!empty($vo['_child'])"}
+								{volist name="vo._child" id="val"}
+								<label class="button"><input name="industry_id[]" value="{$val.id}" type="checkbox">{$val.industry_name}</label>
+								{/volist}		
+							</div><br><div class="button-group border-main checkbox">
+						{else}
+						</div><br><div class="button-group border-main checkbox">
+						{/if}
+						{/volist}						
+					</div>
+					<div class="tips" title=""></div>
+				</div>
+			</div>
+			<script type="text/javascript">
+	$(document).ready(function() {				
+		$.each($("input[name=industry_id_checked]").val().split(','), function(index, val) {
+			$("input[value="+val+"]").click();
+		});	
+	});
+</script>

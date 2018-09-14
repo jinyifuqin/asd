@@ -1,0 +1,23 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">	
+			{html:hidden name="id" value="$dataEdit.id"}	
+			{html:input name="nav_name" class="input w50" value="$dataEdit.nav_name" addstr='data-validate="required:请输入导航名称"' label="导航名称"}
+			{html:input name="guid" class="input w50" value="$dataEdit.guid" label="唯一标识"}
+			{html:input name="alias_name" class="input w50" value="$dataEdit.alias_name" label="别名"}
+			{html:select name="parent_id" option="navTree" value="id->nav_name" label="上级导航" addstr='data-validate="required:请选择上级导航"' selected="$dataEdit.parent_id" }
+			{html:input name="nav_link" class="input w50" value="$dataEdit.nav_link" label="导航链接"}					
+			{html:radio name="nav_target" value=":config('link_target')" default="$dataEdit.nav_target" label="打开方式" }	
+			{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }			
+			{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>
+		</form>
+{/block}

@@ -1,0 +1,17 @@
+<div class="right-section hot-tag clearfix">
+	<h4>热门标签</h4>
+	<ul class="hot-tag-list">
+	{volist name="hotTags" id="tag"}
+	<li><a href="" class="hot-tag-list-tag">{$key}</a> <span class="hot-tag-list-contact">x</span> {$tag}</li>
+	{/volist}
+	</ul>
+</div>
+<div class="right-section hot-art clearfix">
+		<h4>精品排行</h4>
+		<ul class="hot-art-list">
+			{volist name="viewsTop" id="vo"}
+			<li><a href="{$vo->art_url}">{$vo.title}</a></li>
+			{/volist}
+			<!-- <li><a href="/news" target="_blank" class="f12">更多头条内容→</a></li> -->
+		</ul>
+	</div>

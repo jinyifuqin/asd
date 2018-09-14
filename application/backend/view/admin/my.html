@@ -1,0 +1,28 @@
+{extend name="base" /}
+{block name="content_title"}我的信息{/block}
+{block name="content_btn_top"}
+{html:button href=":url('my_password')"  }<span class="icon-plus-square-o"></span> 修改密码{/html:button} 
+{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">
+		{html:text name="admin_name" class="text" label="用户名" value="$dataEdit.admin_name"}
+		{html:text name="group_name" class="text" label="权限组" value="$dataEdit.group_name"}
+		{html:fileImg name="avatar" class="input w50" value="$dataEdit.avatar" label="头像"}
+		
+		{html:input name="nickname" class="input w50" label="昵称" value="$dataEdit.nickname"}
+		{html:input name="mobile" class="input w50" label="手机号" value="$dataEdit.mobile"}
+		{html:input name="email" class="input w50" label="邮箱" value="$dataEdit.email"}
+
+		{html:text name="login_multiply" class="text" label="多点登录" value="$dataEdit.login_multiply_text"}
+		{html:text name="status" class="text" label="状态" value="$dataEdit.status_text"}
+
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

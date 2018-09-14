@@ -1,0 +1,42 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:hidden name="id" value="$dataEdit.id"}	
+			{html:input name="title" class="input w50" value="$dataEdit.title" addstr='data-validate="required:请输入标题"' label="标题"}
+			{html:select name="cate_id" option="cateTree" value="id->cate_name" label="所属栏目" addstr='data-validate="required:请选择所属栏目"' selected="$dataEdit.cate_id"  }
+
+
+			{html:input name="author" class="input w50" value="$dataEdit.author" label="作者"}			
+			{html:input name="tags" class="input w50" value="$dataEdit.tags" label="标签"}
+			{html:fileImg name="art_img" class="input w50" value="$dataEdit.art_img" label="缩略图"}
+			
+			{html:editor name="content" id="content" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="文章内容" }{$dataEdit.content}{/html:editor}
+			{html:input name="art_link" class="input w50" value="$dataEdit.art_link" label="链接"}
+			
+
+			{html:input name="views" class="input w50" value="$dataEdit.views"" label="浏览量" }
+			{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>				
+		</form>
+		
+{/block}
+{block name="my_script"}
+<script id="uploadImage"></script>
+<script type="text/javascript">
+	$(document).ready(function() {				
+		$.each($("input[name=industry_id_checked]").val().split(','), function(index, val) {
+			$("input[value="+val+"]").click();
+		});		
+	});
+
+</script>
+{/block}

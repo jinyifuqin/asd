@@ -1,0 +1,23 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">	
+		{html:hidden name="id" value="$dataEdit.id"}	
+		{html:input name="spec_name" class="input w50" value="$dataEdit.spec_name" addstr='data-validate="required:请输入规格名称"' label="规格名称"}		
+		{html:radio name="spec_model" value=":config('base.spec_model')" default="$dataEdit.spec_model" label="规格类型" }			
+
+		{include file="product_spec/spec_val" /}
+		
+		{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }
+		{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}
+{block name="my_script"}{/block}

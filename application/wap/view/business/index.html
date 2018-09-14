@@ -1,0 +1,33 @@
+{extend name="base" /}
+{block name="content"}
+	<!-- image start -->
+	<div class="image pull"><img src="{$style_path}/images/im.png" alt="" /></div>
+	<!-- image end -->	
+	<!-- business start -->
+	<div class="business">
+		<div class="business_t">
+			<p>银色港湾（北京）养老服务有限公司专注于中国养老产业全产业链服务的探索，以及养老服务社会化标准体系的构建，通过引进日本多年养老产业发展的先进经验，结合中国当前社会文化及居民生活水平，创建符合中国本土文化的养老产业服务模式。针对符合中国民情的“居家养老、社区养老、机构养老”等三种养老模式的需求研究，银色港湾(北京)养老服务有限公司建立融合<b>“介护培训、规划设计、策划运营、医养结合、老年超市、生前契约”</b>等六位一体的、覆盖多层次养老需求的全面服务体系！</p>
+		</div>
+		<div class="business_b">
+			<div class="row">
+				{volist name=":get_cate_child(37)" id="vo"}
+				<div class="col-xs-6" aos="fade-up">
+					<a href="{:url('business/detail','id='.$vo['id'])}">
+						<img src="{$style_path}/images/x{$i}.png" alt="" />
+						<h1>{$vo.cate_name}</h1>
+						{$vo.description|text_to_html=###,2}
+					</a>
+				</div>
+				{/volist}				
+			</div>
+		</div>
+	</div>
+	<!-- business end -->
+	<script type="text/javascript">
+	$(function(){
+		$('.business_b .col-xs-6 a').each(function(i){
+			$('.business_b .col-xs-6 a').eq(i).css('background','url("{$style_path}/images/b'+(i+1)+'.png") no-repeat center center /100% 100%')
+		});
+	});
+</script>
+{/block}

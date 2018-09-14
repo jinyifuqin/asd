@@ -1,0 +1,11 @@
+<ul>
+{volist name=":get_job_list()" id="vo"}
+	<li>
+		<a href="{:url('index_job_detail','id='.$vo['id'])}" class='after'>
+			<img src="{$style_path}/images/zp.png" alt="" />
+			<p>[北京]{$vo.title}</p>
+			<span><img src="{$style_path}/images/jt.png" alt="" /></span>
+		</a>
+	</li>                
+{/volist}
+</ul>

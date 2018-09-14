@@ -1,0 +1,10 @@
+<div class="form-group">
+	<div class="label">
+		<label for="username">绑定规格：</label>
+	</div>
+	<div class="field">
+		{volist name="$allSpec" id="spec" key="val"}
+		<label><input name="spec_id[]" type="checkbox" value="{$val}" {if condition="!empty($dataEdit->spec_id_arr) and in_array($val, $dataEdit->spec_id_arr)"}checked{/if}>{$spec}({$key})</label>
+		{/volist}
+	</div>
+</div>

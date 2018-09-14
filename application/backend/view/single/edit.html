@@ -1,0 +1,52 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">	
+		{html:hidden name="id" value="$dataEdit.id"}
+		{html:input name="cate_name" class="input w50" value="$dataEdit.cate_name" addstr='data-validate="required:请输入栏目名称"' label="栏目名称"}
+		{html:input name="guid" class="input w50" value="$dataEdit.guid" addstr='data-validate="required:请输入唯一标识"' label="唯一标识"}
+		{html:input name="alias_name" class="w50" value="$dataEdit.alias_name" label="别名"}	
+		{html:fileImg name="cate_img" class="w50" value="$dataEdit.cate_img" label="缩略图"}
+		
+		{volist name="fragment" id="vo"}
+			{switch name="vo.frag_type" }
+                {case value="input"}
+                    {html:input name="$vo.id" class="fragment w50" value="$vo.content" label="$vo.title"}
+                {/case}
+                {case value="textarea"}
+                    {html:textarea name="$vo.id" class="fragment w80" value="$vo.content" label="$vo.title"}
+                {/case}
+                {case value="img"}
+        			{html:fileImg name="$vo.id" id="$vo.id" class="fragment" value="$vo.content" label="$vo.title"}        	
+                {/case}
+                {case value="editor"}
+                	{html:editor name="$vo.id" class="fragment" id="$vo.id" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="$vo.title" }{$vo.content}{/html:editor}
+                {/case}
+            {/switch}
+		{/volist}
+
+		{html:editor name="content" id="content" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="内容" }{$dataEdit.content}{/html:editor}		
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}
+{block name="my_script"}
+<script type="text/javascript">
+$(document).ready(function() {	
+	setInterval(function(){
+		$(".fragment").each(function(index, el) {
+			var name = $(this).attr('name');
+			if(name &&  name.indexOf('fragment') < 0 ){
+				$(this).attr('name', 'fragment[' +$(this).attr('name')+ ']');
+			}
+		});
+	},1000);
+});
+</script>
+{/block}

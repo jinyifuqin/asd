@@ -1,0 +1,49 @@
+{extend name="base" /}
+{block name="seo_title"}账号及密码 - {__block__}{/block}
+{block name="content"}
+<div class="about">
+    <div class="abocon container">
+        {include file="common/left" /}
+        <div class="huiyuan">
+        	<div class="grzl">
+            	<h1>消息中心</h1>
+                <div class="hynews">
+                	<ul>
+                        {volist name="dataList" id="vo"}
+                    	<li {if $vo.status eq 1}class="act"{/if}>
+                            <a href="{:url('item',['id'=>$vo.id])}" class="get_message">{if $vo.status eq 1}<b>[ 未读 ] </b>{/if}
+                            {$vo.title}</a><span>{$vo.update_time_text}</span></li>
+                        {/volist}
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="number">{$dataList->render()}</div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<!-- 自定义脚本 -->
+<script type="text/javascript">
+$(function(){
+    $('.get_message').click(function(event) {
+        var that = $(this);
+        $.get($(this).attr('href'), function(data) {
+            if(data.code != '1'){
+                data.url = '';
+                toolTips(data.msg, data.code,data.url);
+            }else{
+                layer.alert(data.msg, {
+                    title : '消息内容'
+                });
+                that.parent('li').removeClass('act').find('b').remove();
+            }
+        },'json');
+        return false;
+    });
+});
+</script>
+{/block}

@@ -1,0 +1,22 @@
+{extend name="base" /}
+
+{block name="content"}
+{include file="wejoy/nav"}
+<div class="office_envir">
+	<div class="container">
+    	<div class="title1" aos="fade-down">
+            <h1>在这里<b>起航</b></h1>
+            <p>这里，资海人热爱的地方，这里，资海人工作的地方</p>
+        </div>
+        <div class="off_env">
+        	<ul>
+                {volist name=":get_article_list('bangonghuanjing')" id="vo"}
+            	<li aos="slide-up"><a href="javascript:;"><img src="{$vo.art_img}" alt="" width="382"/></a></li>
+                {/volist}
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{/block}

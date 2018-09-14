@@ -1,0 +1,25 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">		
+		{html:hidden name="id" value="$dataEdit.id"}	
+		{html:input name="ad_name" class="input w50" value="$dataEdit.ad_name" addstr='data-validate="required:请输入名称"' label="广告位名称"}
+		{html:select name="ad_id" option="ad" value="id->ad_name" label="广告位置" addstr='data-validate="required:请选择广告位置"' selected="$dataEdit.ad_id"  }
+		
+		{html:fileImg name="ad_img" class="input w50" value="$dataEdit.ad_img" label="广告图片"}
+
+		{html:input name="ad_link" class="input w50" value="$dataEdit.ad_link" label="链接"}
+		{html:radio name="ad_target" value=":config('link_target')" default="$dataEdit.ad_target" label="打开方式" }				
+		
+		{html:input name="order_id" class="input w50" value="1" label="排序" }
+		{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>				
+	</form>		
+{/block}

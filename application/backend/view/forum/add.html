@@ -1,0 +1,39 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:input name="title" class="input w50" addstr='data-validate="required:请输入标题"' label="标题"}
+			{html:select name="cate_id" option="cateTree" value="id->cate_name" label="所属栏目" addstr='data-validate="required:请选择所属栏目"'  }
+			{html:input name="author" class="input w50" label="作者"}			
+			{html:input name="tags" class="input w50" label="标签"}
+			{html:fileImg name="art_img" class="input w50" label="缩略图"}			
+			{include file="editor" type="ueditor" /}
+			{html:input name="art_link" class="input w50" label="链接"}			
+			{html:input name="views" class="input w50" value="100" label="浏览量" }
+			{html:input name="order_id" class="input w50" value="1" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="1" label="显示" }
+
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>
+		</form>
+{/block}
+{block name="my_script"}
+{load href="/static/backend/plugin/multiple-select-master/multiple-select.css,/static/backend/plugin/multiple-select-master/multiple-select.js" /}
+<script>
+    // $(function() {
+    //     $('#industry_id').change(function() {
+    //         console.log($(this).val());
+    //     }).multipleSelect({
+    //     	// multiple: true,
+    //     	minimumCountSelected : 10,
+    //         width: '100%'
+    //     });
+    // });
+</script>
+{/block}

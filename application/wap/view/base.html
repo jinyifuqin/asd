@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn">
+<head>
+	<title>{$setting.title}</title>
+    <meta name="keywords" content="{$setting.keywords}" />
+    <meta name="description" content="{$setting.description}" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  	<meta name="renderer" content="webkit|ie-comp|ie-stand" />  
+	<meta charset="UTF-8" />
+	{load href="/static/wap/css/index.css,/static/wap/css/aos.css,/static/wap/css/animate.css,/static/wap/css/swiper.min.css,/static/wap/dist/css/bootstrap.min.css,/static/wap/js/jquery-1.11.1.min.js,/static/wap/js/swiper.min.js,/static/wap/dist/js/bootstrap.min.js,/static/wap/js/aos.js,/static/wap/js/index.js" /}		
+	{block name="style"}
+        <!-- 自定义样式 -->
+    {/block}
+</head>
+	<body>
+	{block name="header"}
+		{:widget('Common/header')} 
+    {/block}
+    {block name="content"}{/block}
+    {block name="footer"}
+    	{:widget('Common/footer')} 
+    {/block}
+    {block name="script"}{/block}
+	</body>
+</html>

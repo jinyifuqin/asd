@@ -1,0 +1,28 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:input name="pro_name" class="input w50" addstr='data-validate="required:请输入名称"' label="产品名称"}
+			{html:input name="alias_name" class="input w50" label="别名"}
+
+
+			{html:select name="pro_cate_id" option="cateTree" value="id->cate_name" label="所属类目" addstr='data-validate="required:请选择所属类目"'  }			
+
+			{html:input name="price" class="input w50" label="价格"}
+			{html:fileImg name="goods_img" class="input w50" label="缩略图"}
+			{html:fileImg name="goods_img_more" class="input w50" more="1" label="组图"}
+			{include file="editor" type="ueditor" /}
+			{html:input name="views" class="input w50" value="100" label="浏览量" }
+			{html:input name="order_id" class="input w50" value="1" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="1" label="显示" }
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>
+		</form>
+{/block}
+{block name="my_script"}{/block}

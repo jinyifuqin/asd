@@ -1,0 +1,33 @@
+{extend name="base" /}
+{block name="content_title"}栏目管理{/block}
+{block name="content_btn_top"}
+{html:button href=":url('delete')" class="border-red delete-multi" }<span class="icon-trash-o"></span> 批量删除{/html:button} 
+{html:button href=":url('add')" }<span class="icon-plus-square-o"></span> 添加分类{/html:button} 
+{/block} 
+{block name="content_body"}
+<div class="table-responsive">
+<table class="table table-hover">
+    <tr>
+      <th width="5%"><input type="checkbox" checkfor="id" class="check_all" title="全选">ID</th>
+      <th>栏目名称</th>
+      <th width="*">栏目类型</th>
+      <th width="*">修改时间</th>
+      <th width="10%">状态</th>
+      <th width="20%">操作</th>
+    </tr>
+    {volist name='dataList' id='vo'}
+    <tr>
+      <td><input type="checkbox" name="id" value="{$vo->id}" id="id_{$vo->id}"><label for="id_{$vo->id}">{$vo->id}</label></td>
+      <td>{$vo->prefix}{$vo->cate_name}</td>
+      <td></td>
+      <td>{$vo->update_time_text}</td>
+      <td><span class="tag_ststus_show" tag-value="{$vo->is_show}"></span></td>
+      <td><div class="button-group"> 
+      <a class="button border-main" href="{:url('add','parent_id='.$vo->id)}"><span class="icon-edit"></span> 添加</a>
+      <a class="button border-main" href="{:url('edit','id='.$vo->id)}"><span class="icon-edit"></span> 修改</a> 
+      <a class="button border-red button-delete need-confirm" href="{:url('delete','id='.$vo->id)}"><span class="icon-trash-o"></span> 删除</a> </div></td>
+    </tr>
+	{/volist}
+</table>
+</div>
+{/block}

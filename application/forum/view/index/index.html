@@ -1,0 +1,42 @@
+{extend name="base" /}
+{block name="seo"}
+	<title>首页 - Wejoy社区</title>
+	<meta name="keywords" content="Wejoy,网站开发,济南资海网站" />
+	<meta name="description" content="Wejoy交流社区！" />
+{/block}
+
+{block name="content"}
+<div class="container">
+<div class="col-md-8 padding-no">
+	{volist name='topicList' id='vo'}
+	<div class="list-group">
+	  	<div class="list-group-item clearfix">
+	  		<div class="article-list-left">
+	  			<div class="article-list-attr article-list-attr-plus article-list-recommend ">{$vo.views}<span>浏览</span></div>
+	  			<!-- <div class="article-list-attr article-list-views">{$vo.views}<span>浏览</span></div> -->
+	  		</div>
+	  		<div class="article-list-right">
+		    	<h4 class="list-group-item-heading"><a href="{$vo->art_url}">{$vo.title}</a></h4>
+		    	<p class="list-group-item-text">{$vo->content_desc}</p>
+		    	<ul class="author">
+                    <li class="pull-right" title="发布于">
+                    	<small class="glyphicon glyphicon-bookmark"></small> {$vo->update_time_text}
+	                </li>
+	                <li>
+	                <a href="">
+	                    <img class="avatar-20 mr10" src="https://sfault-avatar.b0.upaiyun.com/221/184/2211842195-58a17c95d1e68_small" alt="{$vo.author}">{$vo.author}
+	                </a>
+	                发布于 <a href="javascript:;">{$vo->cate->cate_name|default=''}</a>
+	                <span class="split"></span>&emsp;
+	            </li>
+	        </ul>
+	    	</div>	    	
+	  	</div>
+	</div>
+	{/volist}
+</div>
+<div class="col-md-4">
+	{:widget('topic/hotTags')}	
+</div>
+</div>
+{/block}

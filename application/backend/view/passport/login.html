@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>登录 - 管理中心 - Powered by {:config('base.app_powered')}</title>
+    <link rel="stylesheet" href="{$style_path}/css/pintuer.css">
+    <link rel="stylesheet" href="{$style_path}/css/admin.css">
+    <script type="text/javascript" src="{$style_path}/js/jquery.js"></script>
+    <script type="text/javascript" src="{$style_path}/js/pintuer.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        if (self != top) {
+            window.top.location.href = self.location.href;
+        } else {
+            $('body').removeClass('hidden');
+        }
+    });
+    </script>
+</head>
+
+<body class="bg-blue">
+<!-- <div class="bg"></div> -->
+    <div class="container">
+        <div class="line">
+            <div class="xs6 xm4 xs3-move xm4-move">
+                <br>
+                <br>
+                <div class="media media-y">
+                    <img src="{$style_path}/images/logo_big.png" class="radius" alt="{:config('base.app_name')}">
+                </div>
+                <div class="media media-y"><h1 class="text-white">{:config('base.app_name')}</h1></div>
+                <br>
+                <br>
+                <form action="" method="post">{:token()}
+                    <div class="panel">
+                        <div class="panel-head"><strong>立即登录</strong></div>
+                        <div class="panel-body" style="padding:30px;">
+                            <div class="form-group">
+                                <div class="field field-icon-right">
+                                    <input type="text" class="input" name="username" placeholder="登录账号" data-validate="required:请填写账号">
+                                    <span class="icon icon-user"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="field field-icon-right">
+                                    <input type="password" class="input" name="password" placeholder="登录密码" data-validate="required:请填写密码">
+                                    <span class="icon icon-key"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="field">
+                                    <input type="text" class="input" name="captcha" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码">
+                                    <img src="{:captcha_src()}" width="40%" height="32" class="passcode" onclick="this.src=this.src+'?t='+Math.random()" title="点击刷新验证码">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-foot text-center">
+                            <button type="submit" class="button button-block bg-blue text-big button-login">登录</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-right text-small text-gray padding-top"><a class="text-white" target="_blank" href="{:url('/')}">网站首页</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

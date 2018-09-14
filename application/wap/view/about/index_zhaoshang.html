@@ -1,0 +1,12 @@
+<div class="container">
+		<div class="row">
+			{volist name=":get_article_list(43)" id="vo"} 
+			<div class="brief_3b col-xs-6">
+				<a href="{:url('index_zhaoshang_detail','id='.$vo['id'])}">
+					<img src="{$vo.art_img}" alt="" />
+					<p>{$vo.title}</p>
+				</a>
+			</div>
+			{/volist}
+		</div>
+	</div>

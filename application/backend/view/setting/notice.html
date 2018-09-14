@@ -1,0 +1,133 @@
+{extend name="base" /} {block name="content_title"}站点配置{/block} {block name="content_btn_top"} {if $group eq 'custom'} {html:button href=":url('add')" }<span class="icon-plus-square-o"></span> 添加{/html:button} {/if} {/block} {block name="content_body"}
+<div class="body-content tab">
+    <div class="tab-head">
+        <ul class="tab-nav">
+            <li class="active"><a href="#tab-sms">短信信息</a> </li>
+            <li ><a href="#tab-mailer">邮件信息</a> </li>
+            <li><a href="#tab-sms-send">短信发送</a> </li>
+            <li><a href="#tab-mailer-send">邮件发送</a> </li>
+        </ul>
+    </div>
+    <div class="tab-body">
+        <div class="tab-panel active" id="tab-sms">
+            <form method="post" class="form-x" action="">
+                {html:text name="sms_account" class="text" value="$sms_account" label="短信余额" note="仅供参考，该数据由短信服务器提供"}
+                {volist name="dataList" id="vo"}
+                	{if $vo.parent eq 'sms'}
+                	{include file="setting/form-group"} 
+                	{/if}
+               	{/volist}
+                <div class="form-group">
+                    <div class="label">
+                        <label></label>
+                    </div>
+                    <div class="field">
+                        <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-panel" id="tab-mailer">
+            <form method="post" class="form-x" action="">
+                {volist name="dataList" id="vo"} 
+                	{if $vo.parent eq 'mailer'}
+                		{include file="setting/form-group"} 
+                	{/if}
+                {/volist}
+                <div class="form-group">
+                    <div class="label">
+                        <label></label>
+                    </div>
+                    <div class="field">
+                        <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-panel" id="tab-sms-send">            
+            <form method="post" class="form-x" action="">
+                {html:input name="phone" class="input w50" value="" label="收信手机号" note="多个以英文‘;’分割"}                
+                {html:textarea name="body" value="$body" class="input w80" style="height:80px;" label="短信内容" note="注意：如果没有开通群发服务，请不要群发营销内容，否则可能被短信服务商封号，后果自行承担。"}
+
+                <div class="form-group">
+                    <div class="label"><label></label></div>
+                    <div class="field">
+                        <button class="sms_send button bg-main icon-check-square-o" type="button"> 发送</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-panel" id="tab-mailer-send">        	
+        	<form method="post" class="form-x" action="">
+	            {html:input name="address" class="input w50" value="" label="收件人邮箱地址" note="多个以英文‘;’分割"}
+	            {html:input name="subject" class="input w50" value="$subject" label="主题" note="邮件标题"}
+	            {html:textarea name="body" value="$body" class="input w80" style="height:80px;" label="邮件内容"}
+
+	            <div class="form-group">
+	                <div class="label"><label></label></div>
+	                <div class="field">
+	                    <button class="mailer_send button bg-main icon-check-square-o" type="button"> 发送</button>
+	                </div>
+	            </div>
+	        </form>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="my_script"}
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".mailer_send").click(function(event) {
+		if($(this).parents('form').find("input[name=address]").val() == ''){
+			showTips('请填写收件人',2);
+			return false;
+		}
+		if($(this).parents('form').find("input[name=subject]").val() == ''){
+			showTips('请填写邮件标题',2);
+			return false;
+		}
+		if($(this).parents('form').find("input[name=body]").val() == ''){
+			showTips('请填写邮件内容',2);
+			return false;
+		}
+		var formData = $(this).parents('form').serialize();
+		var load_index = layer.load(1, {
+		   shade: [0.4,'#000'], //0.1透明度的白色背景
+	       time: 10 * 1000 //3s后自动关闭
+		});;
+		$.post("{:url('mailer_send')}", formData, function(data, textStatus, xhr) {
+			layer.close(load_index);
+			if(data.code == 1){
+				showTips(data.msg,1);
+			}else{
+				showTips(data.msg,2);
+			}
+		},'json');
+	});
+    $(".sms_send").click(function(event) {
+        if($(this).parents('form').find("input[name=address]").val() == ''){
+            showTips('收信手机号',2);
+            return false;
+        }
+        if($(this).parents('form').find("input[name=body]").val() == ''){
+            showTips('请填写短信内容',2);
+            return false;
+        }
+        var formData = $(this).parents('form').serialize();
+        var load_index = layer.load(1, {
+           shade: [0.4,'#000'], //0.1透明度的白色背景
+           time: 10 * 1000 //3s后自动关闭
+        });;
+        $.post("{:url('sms_send')}", formData, function(data, textStatus, xhr) {
+            layer.close(load_index);
+            if(data.code == 1){
+                showTips(data.msg,1);
+            }else{
+                showTips(data.msg,2);
+            }
+        },'json');
+
+    });
+});
+</script>
+{/block}

@@ -1,0 +1,19 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="{:url('add')}">	
+		{html:hidden name="cate_id" value="0"}
+		{html:hidden name="cate_id" value="$Request.param.id"}
+		{html:input name="title" class="input w50" addstr='data-validate="required:请输入碎片名称"' label="碎片名称"}
+		{html:input name="guid" class="input w50" label="唯一标识" note="不填写，则自动生成"}
+		{html:radio name="frag_type" value=":config('base.setting_type')" label="碎片类型" default="input" note="添加碎片后，将在单页修改页面显示" }
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

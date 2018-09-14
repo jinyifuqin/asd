@@ -1,0 +1,21 @@
+{extend name="base" /}
+{block name="content"}
+	<!-- newsxq start -->
+	 <div class="news_box">
+		<div class="container">
+			{assign name="article" value=":get_article($Request.param.id)" /}
+			<div class="newsxq_t">
+				<h2>{$article.title}</h2>
+				<span><img src="{$style_path}/images/sj.png" alt="">时间：{$article.update_time|date='Y-m-d',###}</span><span><img src="{$style_path}/images/t2.png" alt="">来源：{$article.author}</span>
+			</div>
+			<div class="newsxq_b content">
+				{$article.content}
+			</div>
+			<div class="newsxq_f">
+				{notempty name="article.prev"}<p class='after'><a href="{$article.prevId}"><span>上一篇</span><em>{$article.prev.title}</em></a></p>{/notempty}				
+				{notempty name="article.next"}<p class='after'><a href="{$article.nextId}"><span>下一篇</span><em>{$article.next.title}</em></a></p>{/notempty}
+			</div>
+		</div>
+	</div>
+	<!-- newsxq end -->
+{/block}

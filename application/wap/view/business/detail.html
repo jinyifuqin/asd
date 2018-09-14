@@ -1,0 +1,17 @@
+{extend name="base" /}
+{block name="content"}
+	<!-- newsxq start -->
+	 <div class="news_box">
+		<div class="container">
+			{assign name="cate" value=":get_cate($Request.param.id)" /}			
+			<div class="newsxq_t">
+				<h2>{$cate.cate_name}</h2>				
+			</div>
+			<div class="newsxq_b">
+				<div class="cate_img"><img src="{$cate.cate_img}" alt="{$cate.cate_name}" /></div>
+				<div class="content">{$cate.content}</div>
+			</div>			
+		</div>
+	</div>
+	<!-- newsxq end -->
+{/block}

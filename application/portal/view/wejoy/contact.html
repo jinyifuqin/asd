@@ -1,0 +1,76 @@
+{extend name="base" /}
+{block name="seo"}{:get_seo('lianxiwomen')}{/block}
+{block name="content"}
+{include file="wejoy/nav"}
+<div class="contact">
+    <div class="container">
+        <div class="conc">
+            {assign name="cate" value=":get_cate('lianxiwomen')"}
+            <div class="conl float_l">
+                <h1>{$cate.gongsimingcheng|default=''}</h1>
+                <p>{$cate.jianjie|default=''}</p>
+                <div class="conlb"><b><img src="{$default_path}/images/icon20.png" alt=""/></b><span>咨询热线：</span>{$cate.dianhua|default=''}</div>
+                <p>电  话：{$cate.dianhua|default=''}</p>
+                <p>{$cate.dizhi|default=''}</p>
+                <p>网　址：{$cate.wangzhi|default=''}</p>
+                <p>邮　编：{$cate.youbian|default=''}</p>
+            </div>
+            <div class="conr float_r">
+                <form action="" method="post" id="leaveForm">
+                    <div class="conrb">
+                        <label>留言标题：</label>
+                        <input name="title" type="text" class="inp"/>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="conrb">
+                        <label>留言内容：</label>
+                        <textarea name="content" cols="" rows=""></textarea>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="conrb">
+                        <label>联系邮箱：</label>
+                        <input name="user_email" type="text" class="inp"/>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="conrb">
+                        <label>联系电话：</label>
+                        <input name="user_phone" type="text" class="inp"/>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="conrb">
+                        <label>联系人：</label>
+                        <input name="nickname" type="text" class="inp"/>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="conrb">
+                        <label>验证码：</label>
+                        <input name="captcha" type="text" class="inp" style="width: 100px" />
+                        <img src="{:captcha_src()}" alt="" class="passcode" style="height:37px;cursor:pointer;margin-left: 10px;" onclick="this.src=this.src+'?t='+Math.random()"> 
+                        <div class="clear"></div>
+                    </div>
+                    <input type="submit" class="btn1" value="提交"/><input type="reset" class="btn2" value="重置"/>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="map">{$cate.content|default=''}</div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $("#leaveForm").submit(function(event) {
+        var that = $(this);
+        $.ajax({
+            url: that.attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: that.serialize(),
+        }).always(function(data) {
+            toolTips(data.msg,data.code);
+        });
+        
+        return false;
+    });
+</script>
+{/block}

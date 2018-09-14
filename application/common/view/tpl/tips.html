@@ -1,0 +1,10 @@
+{extend name="common@tpl/base" /}
+{block name="content"}
+<div class="tips_con_body_down">
+	<ul class="tips_body_list">
+		<li class="tips_body_list_tit">您还可以：</li>
+		<li><a href="{:url('index/dashboard')}">&bull;&nbsp;返回控制台</a></li>
+		<li><a id="href" href="<?php echo($url);?>">&bull;&nbsp;页面将在（<b id="wait"><?php echo($wait);?></b>）秒后自动跳转……</a></li>
+	</ul>
+</div>
+{/block}

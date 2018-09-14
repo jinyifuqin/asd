@@ -1,0 +1,211 @@
+{extend name="base" /}
+{block name="seo"}{:get_seo('qiyejianjie')}{/block}
+{block name="style"}
+<link type="text/css" rel="stylesheet" href="{$default_path}/style/owl.carousel.css">
+<link type="text/css" rel="stylesheet" href="{$default_path}/style/owl.theme.css">
+{/block}
+{block name="content"}
+{include file="wejoy/nav"}
+<div class="about">
+    <div class="abo1">
+        <div class="container">
+            <div class="ab1l float_l">
+                <img src="{:get_cate_img('qiyejianjie')}" alt="" width="407" />                
+                <div class="ab1lb">
+                    <h1>选择资海   选择品质</h1>
+                    <p>CHOOSE ZIHAI CHOOSE QUALITY</p>
+                </div>
+            </div>
+            <div class="ab1r float_r">
+                {:get_cate_content('qiyejianjie')}
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="abo2">
+        <div class="container">
+            <ul>
+                <li><img src="{$default_path}/images/icon13.png" alt="" width="191" />
+                    <div class="abo2li float_l">
+                        <h1>资海优势</h1>
+                        <p>我们有着“网站建设计专家，网络推广顾问”的美誉，是专业的互联网服务提供商。由于在同行业中有拥有强大优势，因此成为许多品牌企业进行网站建设、软件系统开发和互联网业务的首选伙伴。</p>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li><img src="{$default_path}/images/icon14.png" alt="" width="191" />
+                    <div class="abo2li float_l">
+                        <h1>技术优势</h1>
+                        <p>我们非常注重技术研发，分别在北京、哈尔滨、大连。山西设计研发基地。通过多年的技术创新与行业历练，我们聚集了多个领域的项目经验，先后为少市级政府、企业单位研发百余项目。</p>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li><img src="{$default_path}/images/icon15.png" alt="" width="191" />
+                    <div class="abo2li float_l">
+                        <h1>素质优势</h1>
+                        <p>我们拥有一支500余人的高素质员工队伍。其中80%拥有本科学历及多年的行业经验，20%有着硕士以上学历。他们年轻而富有创意，能力突出、专业素质过硬，凭借着对互联网事业的狂热追求，不断开拓与进步，实现了我们在持术领域上飞跃。</p>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li><img src="{$default_path}/images/icon16.png" alt="" width="191" />
+                    <div class="abo2li float_l">
+                        <h1>服务优势</h1>
+                        <p>我们专业、细致的服务团队有着资深的客户服务经验，全部通过“标准与专业化”的上岗培训，执行“7X24”的服务机制。目前，我们已形成成熟完善的服务制度，随时为客户提供和种咨询。</p>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="abo3">
+        <div class="container">
+            <div class="title1" aos="fade-down">
+                <h1>我们可以<b>做更多</b></h1>
+                <p>打造全方位网络营销平台的美好愿景承载着资海人的梦想扬帆起航创造下一个辉煌</p>
+            </div>
+            <div class="abo3con">
+                <div class="ab3l float_l">
+                    <img src="{$default_path}/images/img24.jpg" alt="" class="abimg1" aos="fade-right" />
+                    <div class="ab3c1" aos="fade-down" aos-delay="600">
+                        <h1>与快乐同步 与成功同行</h1>
+                        <p>“快乐”是资海的主旋律。生活工作在资海这个大家庭，每个资海人，都弹奏着快乐的音符，散发着快乐的气息。</p>
+                        <img src="{$default_path}/images/icon17.png" alt="" />
+                    </div>
+                    <img src="{$default_path}/images/img25.jpg" alt="" class="abimg2" aos="fade-right" aos-delay="150" />
+                    <img src="{$default_path}/images/img26.jpg" alt="" class="abimg3" aos="fade-right" aos-delay="300" />
+                    <div class="ab3c2" aos="fade-right" aos-delay="600">
+                        <h1>感恩社会 回报社会</h1>
+                        <p>资海网络集团自创立起，就一直热心关注社会公益事业，资海网络集团被授予"希望工程特殊贡献奖"。</p>
+                        <img src="{$default_path}/images/icon18.png" alt="" />
+                    </div>
+                    <img src="{$default_path}/images/img27.jpg" alt="" class="abimg4" aos="fade-up" aos-delay="450" />
+                </div>
+                <div class="ab3r float_r">
+                    <img src="{$default_path}/images/img28.jpg" alt="" width="296" aos="fade-left" />
+                    <div class="ab3c3" aos="fade-left" aos-delay="600">
+                        <h1>企业与客户的双赢</h1>
+                        <p>“赢利”是资海网络集团与客户达到共赢的美好愿景。断前行的永恒动力。</p>
+                        <img src="{$default_path}/images/icon19.png" alt="" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="abo4">
+        <div class="line2"></div>
+        <div class="container">
+            <h1 aos="fade-down">发展历程</h1>
+            <div class="abo4con">
+                <div id="scroll" class="owl-carousel">
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ab4b">
+                            <div class="ab4tit"><span>2009</span></div>
+                            <div class="ab4con">
+                                <h1>2009年03月</h1>
+                                <p>长春资海网络科技有限公司成立</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="{$default_path}/js/owl.carousel.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#scroll').owlCarousel({
+        items: 5,
+        autoPlay: true,
+        navigation: true,
+        navigationText: ["",""],
+        scrollPerPage: true,
+        slideSpeed:1000,
+    });
+});
+</script>
+{/block}

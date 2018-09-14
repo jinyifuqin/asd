@@ -1,0 +1,12 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">
+		{html:text name="text" class="text" label="用户名" value="$dataEdit.user.show_name"}
+		{html:text name="text" class="text" label="标题" value="$dataEdit.title"}		
+		{html:text name="text" class="text" label="消息内容" value="$dataEdit.content"}
+		{html:text name="text" class="text" label="发送时间" value="$dataEdit.create_time_text"}
+		{html:text name="text" class="text" label="发送IP" value="$dataEdit.create_ip"}
+		{html:text name="text" class="text" label="状态" value="$dataEdit.status_text"}		
+	</form>
+{/block}

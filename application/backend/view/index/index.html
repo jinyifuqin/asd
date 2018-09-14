@@ -1,0 +1,69 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>管理中心 - Powered by {:config('base.app_powered')}</title>
+    <link rel="stylesheet" href="{$style_path}/css/pintuer.css">
+    <link rel="stylesheet" href="{$style_path}/css/admin.css">
+</head>
+
+<body style="background-color:#f2f9fd;">
+    <div class="header bg-main">
+        <div class="logo margin-big-left fadein-top">
+            <h1><img src="{$style_path}/images/logo.jpg" class="radius-circle rotate-hover" height="50" alt="" />管理平台</h1>
+            <div class="logo_menu"><span class="icon-bars"></span></div>
+        </div>
+        <div class="nav nav-inline admin-nav">
+            <ul>
+                {volist name="dataList" id="vo"}
+                <li><a href="{$vo.menu_link}" class="{$vo.menu_ico}"> {$vo.menu_name}</a> </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="head-l">
+            <a class="button button-little bg-blue" href="{:url('admin/my')}" target="right"><span class="icon-user"></span>{$nickname|substr_cn=6}</a>
+            <a class="button button-little bg-green" href="/" target="_blank"><span class="icon-home"></span>前台</a>
+            <a href="{:url('clear')}" target="right" class="clear-cache button button-little bg-yellow"><span class="icon-wrench"></span>清理</a>
+            <a class="button button-little bg-red" href="{:url('passport/logout')}"><span class="icon-power-off"></span>退出</a>
+        </div>
+    </div>
+    <div class="leftnav">
+        <div class="leftnav-title"><strong><span class="icon-list"></span>管理平台</strong></div>
+        {volist name="dataList" id="vo"}
+        <div class="leftnav_sub">
+            {volist name="vo['_child']" id="_child"}
+            <h2><span class="{$_child.menu_ico}"></span>{$_child.menu_name}</h2>
+            <ul>
+                {volist name="_child['_child']" id="_child_sub"}
+                <li><a href="{$_child_sub.menu_link|url}" target="right"><span class="icon-caret-right"></span>{$_child_sub.menu_name}</a></li>
+                {/volist}
+            </ul>
+            {/volist}
+        </div>
+        {/volist}
+    </div>
+    <ul class="bread">
+        <li><a href="javascript:;" target="right" class="icon-home"> 首页</a></li>
+        <li><a href="javascript:;" target="right">控制台</a></li>
+        <li>控制台</li> 
+        <!-- <li><b>当前语言：</b><span style="color:red;">中文</span> -->
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a> </li> -->
+        <div class="clear"></div>
+    </ul>
+    <div class="admin" id="admin_main" style="-webkit-overflow-scrolling:touch; overflow: auto;">
+        <iframe scrolling="auto" rameborder="0" src="{:url('dashboard')}" name="right" width="100%" height="100%"></iframe>
+    </div>
+    <div style="text-align:center;">
+        <!-- <p>来源:<a href="" target="_blank"></a></p> -->
+    </div>
+    <script type="text/javascript" src="{$style_path}/js/jquery.js"></script>
+    <script type="text/javascript" src="{$style_path}/layer/layer.js"></script>    
+    <script type="text/javascript" src="{$style_path}/js/index.js"></script>
+    <script type="text/javascript" src="{$style_path}/js/lcybot.js"></script>
+</body>
+</html>

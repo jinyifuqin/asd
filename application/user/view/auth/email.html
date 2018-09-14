@@ -1,0 +1,64 @@
+{extend name="base" /}
+{block name="seo_title"}账号及密码 - {__block__}{/block}
+{block name="content"}
+<div class="about">
+    <div class="abocon container">
+        {include file="common/left" /}
+        <div class="huiyuan">
+            <div class="grzl">
+                <h1>邮箱</h1>
+                <form action="" method="post" id="password_form">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  	<tr>
+                    	<td>
+                        	<div class="zhucb">
+                            	<label>邮&emsp;箱：</label>
+                                <input name="user_email" type="text" class="inp3" value="" placeholder="请输入您的电子邮箱"/>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="zhucb">
+	                        	<label>验证码：</label>
+	                            <input name="vcode" type="text" class="inp4" placeholder="请输入验证码"/>
+	                            <input type="button" class="btn3 getVcodeByEmail" value="获取验证码"/>
+	                            <div class="clear"></div>
+	                        </div>
+                            <input type="submit" class="btn5" value="保存"/>
+                    	</td>                        
+                  	</tr>
+                </table>
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<!-- 自定义脚本 -->
+<script type="text/javascript">
+$(function(){
+	$('.getVcodeByEmail').click(function(event) {
+		var user_email = $("input[name=user_email]").val();
+		if(!user_email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)){		
+			toolTips('邮箱格式不正确！');return false;
+		}
+		// 未完
+	});
+	$("#password_form").submit(function(event) {
+		$.ajax({
+			url: $(this).attr('action'),
+			type: 'POST',
+			dataType: 'json',
+			data: $(this).serialize(),
+		}).always(function(data) {
+			if(data.code != '1'){
+				data.url = '';
+			}
+			toolTips(data.msg, data.code,data.url)
+		});
+		
+		return false;
+	});
+});
+</script>
+{/block}

@@ -1,0 +1,52 @@
+{extend name="base" /}
+{block name="content_title"}授权管理{/block}
+{block name="content_btn_top"}
+{/block} 
+{block name="content_body"}
+<div class="table-responsive">
+<table class="table table-hover">
+    <tr>      
+      <th>菜单名称</th>
+      <th>菜单URL</th>
+      <th>查看(GET)</th>
+      <th>保存(POST)</th>
+    </tr>
+    {volist name='dataList' id='vo'}
+    <tr>      
+      <td>{$vo.prefix}{$vo.menu_name}</td>
+      <td>{$vo.menu_link}</td>
+      <td>{notempty name="vo.menu_link"}<input class="auth" {neq name="vo.get|default=0" value="0" }checked{/neq} type="checkbox" url="{$vo.menu_link}" name="get">{/notempty}</td>
+      <td>{notempty name="vo.menu_link"}<input class="auth" {neq name="vo.post|default=0" value="0" }checked{/neq} type="checkbox" url="{$vo.menu_link}" name="post">{/notempty}</td>      
+    </tr>
+	{/volist}
+</table>
+</div>
+{/block}
+{block name="my_script"}
+<script type="text/javascript">
+    $(function(){
+        $(".auth").click(function(event) {
+            var url = $(this).attr('url');
+            var get = $(this).parents('tr').find('input[name=get]').is(':checked') ? 1 : 0 ;
+            var post = $(this).parents('tr').find('input[name=post]').is(':checked') ? 1 : 0;
+            var put = 0;
+            var deleteStr = 0;
+            $.ajax({
+                url: '',
+                type: 'POST',
+                dataType: 'json',
+                data: {urlName: url, get: get, post: post, put: put, delete: deleteStr}
+            })
+            .always(function(data) {
+                if(data.code == 1){
+                    layer.msg('操作成功！', {
+                        icon: 1,                        
+                        skin: 'layer-ext-moon'
+                    });
+                }
+            });
+            
+        });
+    });
+</script>
+{/block}

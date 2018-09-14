@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}
+<div class="tab">
+	<div class="tab-head">		
+		<ul class="tab-nav">
+			<li class="active"><a href="#tab-start">基本信息</a> </li>
+			<li><a href="#tab-advanced">高级信息</a> </li>	
+			<li><a href="#tab-css">SEO信息</a> </li>			
+		</ul>
+	</div>
+	<div class="tab-body">
+		<form method="post" class="form-x" action="">
+			<div class="tab-panel active" id="tab-start">		
+				{html:hidden name="id" value="$dataEdit.id"}	
+				{html:input name="title" class="input w50" value="$dataEdit.title" addstr='data-validate="required:请输入标题"' label="标题"}
+				{html:select name="cate_id" option="cateTree" value="id->cate_name" label="所属栏目" addstr='data-validate="required:请选择所属栏目"' selected="$dataEdit.cate_id"  ext_attr="cate_model" }
+				{html:fileImg name="art_img" class="input w50" value="$dataEdit.art_img" label="缩略图"}
+				{html:fileImg name="art_img_more" class="input w50" value="$dataEdit.art_img_more" more="1" label="组图"}
+				{html:editor name="content" id="content" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="文章内容" }{$dataEdit.content}{/html:editor}
+				{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+			</div>
+			<div class="tab-panel" id="tab-advanced">
+				{html:input name="author" class="input w50" value="$dataEdit.author" label="作者"}				
+				{html:input name="abstract" class="input w50" value="$dataEdit.abstract" label="摘要"}
+				{html:input name="art_link" class="input w50" value="$dataEdit.art_link" label="链接"}
+				{html:input name="views" class="input w50" value="$dataEdit.views"" label="浏览量" }
+				{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }				
+				{html:date name="update_time" class="w50" value="$dataEdit.update_time" label="更新时间"}
+			</div>
+			<div class="tab-panel" id="tab-css">
+				{include file="seo"}
+			</div>	
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>				
+		</form>	
+	</div>
+</div>	
+{/block}
+{block name="my_script"}
+<script id="uploadImage"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("select[name=cate_id]").find('option[cate_model]').each(function(index, el) {
+			if($(this).attr('cate_model') != '2' && $(this).attr('cate_model') != '3'){
+				$(this).attr('disabled','true').css('color', '#ccc');;				
+			}
+		});		
+	});
+</script>
+{/block}

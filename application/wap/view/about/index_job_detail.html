@@ -1,0 +1,35 @@
+{extend name="base" /}
+{block name="content"}
+	<!-- newsxq start -->
+	 <div class="news_box">
+		<div class="container">
+			{assign name="job" value=":get_job($Request.param.id)" /}			
+			<div class="newsxq_t">
+				<h2>{$job.title}</h2>
+				<span><img src="{$style_path}/images/sj.png" alt="">时间：{$job.update_time|date='Y-m-d',###}</span><span><img src="{$style_path}/images/t2.png" alt="">来源：{$job.author}</span>
+			</div>
+			<div class="newsxq_b content">				
+				<ul>
+	    			<li>
+	    				<h4>职位介绍</h4>
+	    				<p>{$job.content}</p>
+	    			</li>
+	    			<li>
+	    				<h4>岗位职责</h4>
+	    				<p>{$job.responsibility|text_to_html}</p>
+	    			</li>
+	    			<li>
+	    				<h4>任职要求</h4>
+	    				<p>{$job.claim|text_to_html}</p>
+	    			</li>
+	    			<li>
+	    				<h4>任职地点</h4>
+	    				<p>{$job.address|text_to_html}</p>
+	    			</li>
+	    		</ul>
+	    		<p><strong>{$job.mark|text_to_html}</strong></p>
+			</div>			
+		</div>
+	</div>
+	<!-- newsxq end -->
+{/block}

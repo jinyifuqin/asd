@@ -1,0 +1,31 @@
+{extend name="base" /}
+{block name="content_title"}短信发送记录{/block}
+{block name="content_btn_top"}
+{/block} 
+{block name="content_body"}
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th width="5%">ID</th>
+      <th>收件人</th>
+      <th>主题</th>
+      <th>邮件内容</th>      
+      <th>发送IP</th>
+      <th>发送时间</th>      
+      <!-- <th width="20%">操作</th> -->
+    </tr>
+    {volist name='dataList' id='vo'}
+    <tr>
+      <td>{$vo->id}</td>
+      <td>{$vo->address}</td>      
+      <td title="{$vo->subject}" class="table-title">{$vo->subject|substr_cn=24}</td>
+      <td title="{$vo->body}" class="table-title">{$vo->body|substr_cn=30}</td>      
+      <td>{$vo->create_ip}</td>            
+      <td>{$vo->create_time_text}</td>
+      <td><!-- <div class="button-group"><a class="button border-main" href="{:url('mailer_edit','id='.$vo->id)}"><span class="icon-edit"></span> 查看</a>  </div> --></td>
+    </tr>
+	{/volist}
+  </table>
+</div>
+  {$dataList->render()}
+{/block}

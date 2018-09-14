@@ -1,0 +1,58 @@
+{extend name="base" /}
+{block name="content"}
+<!-- contact start -->
+<div class="contact">
+	<ul>
+	{volist name=":get_cate_child(38)" id="vo"}
+		<li>
+			<div class="contact_t"><b>{$vo.cate_name}</b></div>
+			<div class="contact_b">
+			<div class="contact_addr">
+				{$vo.description|text_to_html=###,2}
+			</div>
+				<div class="con_box" aos='fade-up'>
+				{$vo.content}
+				</div>
+				<div class='con_f'>{$vo.cate_name}</div>
+			</div>
+		</li>
+	{/volist}
+	</ul>
+</div>
+<!-- contact end -->
+{/block}
+{block name="script"}
+<style type="text/css">
+	p{margin: 0px;}
+</style>
+<script type="text/javascript">
+		function setSubIframe(){
+			var that = $("iframe").contents().find('.BMap_omBtn');
+			if(!that.hasClass('BMap_omBtnClosed')){
+				that.click();
+			}			
+		}
+	$(function(){
+		$(".contact_addr").each(function(index, el) {			
+			$(this).find('p').each(function(index, el) {
+				index++;
+				var style_path = '{$style_path}';
+				var cont = '<img src="' + style_path + '/images/con' + index + '.png" alt="" /><span>' + $(this).html() + '</pan>';
+				$(this).addClass('after').html(cont);
+			});
+		});
+		$("iframe").each(function(index, el) {			
+			var height= 200;
+			$(this).width('100%').height(height);
+			var width = $(this).width();
+			var src = $(this).attr('src').replace('width=', 'width_old=') + '&width=' + width;
+			var src = src.replace('height=', 'height_old=') + '&height='+height;
+			$(this).attr('src', src);			
+		});
+		setTimeout("setSubIframe()", 500);
+		setTimeout("setSubIframe()", 1000);
+		setTimeout("setSubIframe()", 3000);
+		setTimeout("setSubIframe()", 6000);
+	});
+</script>
+{/block}

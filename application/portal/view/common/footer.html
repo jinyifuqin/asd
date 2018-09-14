@@ -1,0 +1,37 @@
+<!--footer-->
+<div class="footer">
+    <div class="container">
+        <div class="fottop">
+            {volist name=":get_nav_child_all('footer')" id="vo"} 
+            <div class="fotbox float_l" {if $i eq 1}style="padding-left:0;"{/if}>
+                <h1>{$vo.nav_name}</h1>
+                {volist name="vo._child" id="_child"}   
+                    <a href="{$_child.nav_link}" target="{$_child.nav_target}">{$_child.nav_name}</a>
+                {/volist} 
+            </div>
+            {/volist}
+            <div class="fotbox1 float_r">                
+                <div class="ewm"><img src="{$default_path}/images/ewm.jpg" alt="" width="132"/>关注网站微信</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="fotbot">
+            <a href="">{$setting.copyright} {$setting.icp}</a>
+            <div class="fotb float_r">
+                <p>全国咨询热线</p>
+                <h1>{$setting.telephone}</h1>
+                <span>Consultation hitline</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="fanhui"><img src="{$default_path}/images/top.png"/></div>
+<script type="text/javascript" src="{$default_path}/js/aos.js"></script>
+<script>
+    AOS.init({
+        easing: 'ease-out-back',
+        duration: 1000
+    });
+</script>

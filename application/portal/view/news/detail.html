@@ -1,0 +1,48 @@
+{extend name="base" /}
+{block name="content"}    
+    <!-- recruit start -->
+    <div class="recruit">
+    	<div class="center after">
+		    <div class="breadcrumb"><img src="{$style_path}/images/wz.png" alt="" />当前位置：<a href="">首页<img src="{$style_path}/images/jian.png" alt="" /></a><a href="">公司新闻<img src="{$style_path}/images/jian.png" alt="" /></a><span>详情</span></div>
+		    <div class="recruit_l">
+		    	{assign name="article" value=":get_article($Request.param.id)" /}
+		    	<div class="recruit_lt">
+		    		<h1>{$article.title}</h1>
+		    		<p><span><img src="{$style_path}/images/sj.png" alt="" />时间：{$article.update_time_text}</span><span><img src="{$style_path}/images/fz.png" alt="" />来源：{$article.author}</span></p>
+		    	</div>
+		    	<div class="newsxq_b">
+		    		{$article.content}
+		    	</div>
+		    	<div class="newsxq_f after">
+		    		<div class="nxq_fl">
+		    			{notempty name="article.next"}<a href="{$article.next.art_url}">上一篇：{$article.next.title} </a>{/notempty}
+		    			{notempty name="article.prev"}<a href="{$article.prev.art_url}">下一篇：{$article.prev.title}</a>{/notempty}
+		    		</div>
+		    		<div class="nxq_fr">
+		    			<a href="{:url('/news')}">返回列表</a>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="recruit_r">
+		    	<div class="recruit_rt">
+		    		<h1>热门新闻</h1>
+		    	</div>
+		    	<div class="recruit_rb">
+		    		<ol>
+		    			{volist name=":get_article_list($article.cate_id, 10, 'hot')" id="vo"}
+		    			<li class='after'>
+		    				<a href="{$vo.art_url}" class="nxq_rl"><img src="{$vo.art_img}" alt="" style="width: 105px;height: 70px;" /></a>
+		    				<div class="nxq_rr">
+		    					<h1><a href="{$vo.art_url}">{$vo.title|substr_cn=12}</a></h1>
+		    					<span>{$vo.update_time_text}</span>
+		    				</div>
+		    			</li>
+						{/volist}
+		    		</ol>
+		    		<a href="{:url('/news')}" class="ck">查看全部<b>>></b></a>
+		    	</div>
+		    </div>
+    	</div>
+    </div>
+    <!-- recruit end -->
+{/block}

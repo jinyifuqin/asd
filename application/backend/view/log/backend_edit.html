@@ -1,0 +1,13 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">
+		{html:text name="text" class="text" label="操作人" value="$dataEdit.admin_name"}
+		{html:text name="text" class="text" label="操作菜单" value="$dataEdit.menu_name"}		
+		{html:text name="text" class="text" label="请求地址" value="$dataEdit.request_url"}
+		{html:text name="text" class="text" label="请求方法" value="$dataEdit.request_method"}
+		{html:text name="text" class="text" label="请求参数" value="$dataEdit.request_param"}
+		{html:text name="text" class="text" label="请求IP" value="$dataEdit.create_ip"}
+		{html:text name="text" class="text" label="操作时间" value="$dataEdit.create_time_text"}
+	</form>
+{/block}

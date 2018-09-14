@@ -1,0 +1,25 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:input name="title" class="input w50" addstr='data-validate="required:请输入标题"' label="标题"}
+			
+			{include file="editor" type="ueditor" /}
+			{html:textarea name="responsibility" class="input" style="height:80px;width:80%" label="岗位职责"}
+			{html:textarea name="claim" class="input" style="height:80px;width:80%" label="任职要求"}
+			{html:textarea name="address" class="input" style="height:40px;width:80%" label="任职地点"}
+			{html:textarea name="mark" class="input" style="height:40px;width:80%" label="其他备注"}
+			{html:input name="views" class="input w50" value="100" label="浏览量" }
+			{html:input name="order_id" class="input w50" value="1" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="1" label="显示" }
+
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>
+		</form>
+{/block}

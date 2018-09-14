@@ -1,0 +1,22 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">						
+		{html:hidden name="id" value="$dataEdit.id"}
+		{html:input name="menu_name" class="input w50" value="$dataEdit.menu_name" addstr='data-validate="required:请输入菜单名称"' label="菜单名称" }
+		{html:input name="menu_ico" class="input w50" value="$dataEdit.menu_ico" label="菜单图标" }
+		{html:input name="menu_link" class="input w50" value="$dataEdit.menu_link" label="菜单链接" }			
+		{html:select name="parent_id" option="menuTree" value="id->menu_name" label="上级菜单" addstr='data-validate="required:请输入名称"' selected="$dataEdit.parent_id" }
+		{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }
+		{html:radio name="development" value=":config('radio')" default="$dataEdit.development" label="仅开发者" note="在开发环境或者登录账户为开发者时显示"}
+		{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }				
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

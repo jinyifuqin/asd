@@ -1,0 +1,52 @@
+{extend name="base" /}
+{block name="content"}    
+<!--banner-->
+<div class="banner" style="height:318px; background:url({$default_path}/images/ban2.jpg) no-repeat center center;">
+    <div class="container">
+    <div class="bghj" style="width:655px;">
+        <h1 aos="flip-up">精选设计风格，轻松打造<b>高端网站</b></h1>
+        <p aos="flip-up">资海网络科技集团帮助您容易地建立自己的网站</p>
+    </div>
+    </div>
+</div>
+<!--新闻资讯-->
+{assign name="article" value=":get_article($Request.param.id)" /}
+<div class="mian">
+    <div class="container">
+        <img src="{$default_path}/images/icon21.png" alt=""/>当前的位置：<a href="{:url('/')}">资海首页</a> > <a href="{:url('news/index')}">新闻资讯</a> > <a href="javascript:;" class="act">{$article.cate->cate_name}</a>
+    </div>
+</div>
+<div class="news">
+<div class="container">
+        <div class="newsl float_l">
+            <div class="newtit">
+                <h1>{$article.title}</h1>
+                <span> {$article.update_time_text} <img src="{$default_path}/images/icon22.png" alt=""/>来源：{$article.author} <img src="{$default_path}/images/icon23.png" alt=""/>{$article.views}</span>
+            </div>
+            <div>
+                {$article.content}
+            </div>            
+            <div class="pian1">
+                {notempty name="article.next"}<p>上一篇：<a href="{$article.next.art_url}">{$article.next.title} </a></p>{/notempty}
+                {notempty name="article.prev"}<p>下一篇：<a href="{$article.prev.art_url}">{$article.prev.title}</a></p>{/notempty}             
+                <a href="{:url('news/index')}" class="comeback">返回列表</a>
+            </div>
+        </div>
+        <div class="succcar float_r">
+            {include file="news/right" /}
+            <div class="sucbox1">
+                <h1 class="sutit">相关资讯</h1>
+                <ul>
+                    {volist name=":get_article_list('news',3,'hot')" id="vo"}
+                    <li title="{$vo.title}"><a href="{$vo.art_url}"><img src="{$vo.art_img}" class="nopic" alt="{$vo.title}" width="242"/>
+                        <h1>{$vo.title|substr_cn=14} </h1>
+                        <p>{$vo.content_desc|substr_cn=26}</p>
+                    </a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}

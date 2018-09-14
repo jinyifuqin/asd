@@ -1,0 +1,23 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">		
+		{html:input name="admin_name" class="input w50" addstr='data-validate="required:请输入用户名"' label="用户名"}
+		{html:input name="password" class="input w50" addstr='data-validate="required:请输入密码"' label="密码"}
+		{html:fileImg name="avatar" class="input w50" label="头像"}
+		{html:select name="group_id" option="authGroup" value="id->name" label="权限" addstr='data-validate="required:请选择权限"'   }
+		{html:input name="nickname" class="input w50" label="昵称"}
+		{html:input name="mobile" class="input w50" label="手机号"}
+		{html:input name="email" class="input w50" label="邮箱"}
+		{html:radio name="login_multiply" value=":config('radio')" default="0" label="多点登录" }
+		{html:radio name="status" value=":config('status_user')" default="1" label="状态" }
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

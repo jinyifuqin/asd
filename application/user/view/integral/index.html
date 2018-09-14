@@ -1,0 +1,85 @@
+{extend name="base" /}
+{block name="seo_title"}账号及密码 - {__block__}{/block}
+{block name="content"}
+<div class="about">
+    <div class="abocon container">
+        {include file="common/left" /}
+               <div class="huiyuan">
+        	<div class="grzl">
+            	<h1>我的积分<span class="wjfen">1200</span><a href="" class="tiajia" style="border:1px solid #ff6801">立即兑换商品</a></h1>
+                <div class="wdjf">
+                	<h2>积分兑换</h2>
+                    <ul class="wdjful">
+                    	<li id="quan1"><a href="#">
+                        	<div class="jfq">
+                                <h2><b>￥</b>50</h2>
+                                <span>优惠券<b>满1900元可用</b></span>
+                                <div class="clear"></div>
+                                <div class="jfdh">
+                                    <span>2500 积分 </span><p>去兑换</p>
+                                </div>
+                            </div>
+                            50元通用优惠券，有效期90天
+                        </a>
+                        </li>
+                        <li id="quan2"><a href="#">
+                        	<div class="jfq">
+                                <h2><b>￥</b>10</h2>
+                                <span>优惠券<b>满1900元可用</b></span>
+                                <div class="clear"></div>
+                                <div class="jfdh">
+                                    <span>2500 积分 </span><p>去兑换</p>
+                                </div>
+                            </div>
+                            50元通用优惠券，有效期90天
+                        </a>
+                        </li>
+                        <li id="quan3"><a href="#">
+                        	<div class="jfq">
+                                <h2><b>￥</b>99</h2>
+                                <span>优惠券<b>满1900元可用</b></span>
+                                <div class="clear"></div>
+                                <div class="jfdh">
+                                    <span>2500 积分 </span><p>去兑换</p>
+                                </div>
+                            </div>
+                            50元通用优惠券，有效期90天
+                        </a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                <div class="wdjf">
+                	<h2>积分明细</h2>
+                    <table width="100%" border="0" cellspacing="1" cellpadding="0" class="jftable">
+                      <tr>
+                        <th width="170">日期</th>
+                        <th width="170">积分增减</th>
+                        <th>详细说明</th>
+                      </tr>
+                      {volist name="dataList" id="vo"}
+                      <tr>
+                        <td>{$vo.create_time_text}</td>
+                        <td>{$vo.affect}</td>
+                        <td style="font-size:12px">{$vo.desc}</td>
+                      </tr>
+                      {/volist}
+                    </table>
+                    {$dataList->render()}
+                </div>
+                <div class="wdjf" style="border:none">
+                	<h2>积分来源与使用</h2>
+                    <div class="wdjfy">
+                    	<p>1. 此处为随意编辑，新用户注册成功获得100积分。</p>
+					    <p>2. 购买保险后出单成功获得积分，数额跟保费相关。</p>
+                        <h2>如何使用积分？</h2>
+                        <p>1. 此处为随意编辑，新用户注册成功获得100积分。</p>
+					    <p>2. 购买保险后出单成功获得积分，数额跟保费相关。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}

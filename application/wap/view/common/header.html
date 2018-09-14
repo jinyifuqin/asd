@@ -1,0 +1,13 @@
+<!-- header start -->
+<div class="header">
+  <div class="mobile-inner-header">
+  	<div class="logo"><img src="{$style_path}/images/logo.png" alt="" /></div>
+    <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-inner-nav">
+    {volist name=":get_nav_child_all(54)" id="vo"} 
+    <a href="{$vo.nav_link}" target="{$vo.nav_target}">{$vo.nav_name}</a>
+    {/volist}
+  </div>
+</div>
+<!-- header end -->

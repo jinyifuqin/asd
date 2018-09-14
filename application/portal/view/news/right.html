@@ -1,0 +1,8 @@
+<div class="sucbox">
+	<h1 class="sutit">新闻资讯</h1>
+    <ul>
+    	{volist name=":get_cate_child('news')" id="vo"}
+    	<li {if $vo.guid eq @$guid}class="act"{/if}><a href="{:url('/news/'.$vo['guid'])}">{$vo.cate_name}</a></li>
+        {/volist}
+    </ul>
+</div>

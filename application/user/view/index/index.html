@@ -1,0 +1,107 @@
+{extend name="base" /}
+{block name="seo_title"}会员中心 - {__block__}{/block}
+{block name="content"}
+<div class="about">
+    <div class="abocon container">
+        {include file="common/left" /}
+        <div class="huiyuan">
+            <div class="huitit">
+                <div class="huitl">
+                    <div class="toux">
+                        <a href=""><img src="{$default_path}/images/hy.png" alt="" width="109" height="108" /></a>
+                    </div>
+                    <div class="touxr">
+                        <h1>欢迎你，{$userInfo->show_name}！</h1>
+                        <p>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：<b>{$userInfo->user_phone}</b><i></i></p>
+                        <p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：<b>{$userInfo->user_email|default="未设置"}</b><i class="ac"></i><a href="" class="renz">立即认证</a></p>
+                        <p>消息中心：<b>未读<a href="{:url('message/index')}">[ {$noRead} ]</a></b></p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="huitr">
+                    <div class="huitrbo">
+                        <p><img src="{$default_path}/images/hy3.png" alt="" />我的积分：<b>{$userInfo->account->integral|default='0'}</b><a href="{:url('index/integral/index')}">立即兑换</a></p>
+                        <p><img src="{$default_path}/images/hy4.png" alt="" />我的优惠券：<b>2</b><a href="{:url('index/product/index')}">立即使用</a></p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="huicon">
+                <div class="sb3_tab">
+                    <div class="sb3_t">
+                        <div class="sb3_tc sb3xly">全部订单</div>
+                        <div class="sb3_tc">保障中<b>1</b></div>
+                        <div class="sb3_tc">未完成<b>4</b></div>
+                        <div class="sb3_tc">待续保</div>
+                        <div class="sb3_tc">处理中</div>
+                        <div class="sb3_tc">公估信息</div>
+                        <div class="sb3_tc">积分订单</div>
+                        <a href="">查看全部 ></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="sb3con">
+                        <div class="sb3o">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <th colspan="2" class="sb3th">基本信息</th>
+                                    <th>被保人</th>
+                                    <th>保障时间</th>
+                                    <th>份数</th>
+                                    <th>保费（元）</th>
+                                    <th class="ztt"><span>状态</span><i></i>
+                                        <div class="zhuant">
+                                            <ul>
+                                                <li><a>未完成</a></li>
+                                                <li><a>已完成</a></li>
+                                                <li><a>保障中</a></li>
+                                            </ul>
+                                            <img src="{$default_path}/images/jiao.png" alt="" />
+                                        </div>
+                                    </th>
+                                    <th style="padding-right:20px">操作</th>
+                                </tr>
+                                {volist name="orderList" id="vo"}
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="ddbox">
+                                            <p><b>{$vo->update_time_text}</b>订单号：<i>{$vo->order_no}</i><span>待支付</span></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="sb3td">
+                                        <a href=""><img src="{$default_path}/images/img36.png" alt="" width="53" height="24" /></a>
+                                    </td>
+                                    <td class="sb3td"><a href="{:url('order/item',['id'=>$vo.id])}" class="sb3dtit">中融-平安 旅行意外险飞机意外D款</a>
+                                        <div class="quanyi">
+                                            <span>保障权益<i></i></span>
+                                            <div class="qyicon">
+                                                <img src="{$default_path}/images/jiao.png" />
+                                                <p><span>意外伤害身残身故</span>5万元</p>
+                                                <p><span>意外伤害身残</span>5万元</p>
+                                                <p><span>意外伤害身残身故</span>5万元</p>
+                                                <p><span>意外伤害身残</span>5万元</p>
+                                            </div>
+                                        </div>
+                                        <p>投保单号<span>201600000</span></p>
+                                    </td>
+                                    <td class="sb3td">李思思</td>
+                                    <td class="sb3td">
+                                        <div class="time">2016-12-21至2017-12-21</div>
+                                    </td>
+                                    <td class="sb3td">1份</td>
+                                    <td class="sb3td"><span>￥100.80</span></td>
+                                    <td class="sb3td">未完成</td>
+                                    <td class="sb3td"><a href="" class="zhif">立即支付</a><a href="" class="qvx">取消订单</a></td>
+                                </tr>
+                                {/volist}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}

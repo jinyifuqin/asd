@@ -1,0 +1,23 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+	<form method="post" class="form-x" action="">		
+		{html:hidden name="id" value="$dataEdit.id"}	
+		{html:text name="user_name" class="text w50" label="用户" value="$dataEdit.show_name"}
+		{html:fileImg name="user_avatar" class="input w50" value="$dataEdit.user_avatar" label="头像"}			
+		
+		{html:input name="nickname" class="input w50" label="昵称" value="$dataEdit.nickname"}
+		{html:input name="user_phone" class="input w50" label="手机号" value="$dataEdit.user_phone"}
+		{html:input name="user_email" class="input w50" label="邮箱" value="$dataEdit.user_email"}
+		
+		{html:radio name="status" value=":config('status_user')" default="$dataEdit.status" label="状态" }
+		<div class="form-group">
+			<div class="label">
+				<label></label>
+			</div>
+			<div class="field">
+				{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+			</div>
+		</div>
+	</form>
+{/block}

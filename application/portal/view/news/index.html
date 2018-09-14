@@ -1,0 +1,45 @@
+{extend name="base" /}
+{block name="seo"}{:get_seo($Request.param.guid ? $Request.param.guid : 'news')}{/block}
+{block name="content"}
+<!--banner-->
+<div class="banner" style="height:318px; background:url({$default_path}/images/ban2.jpg) no-repeat center center;">
+    <div class="container">
+    <div class="bghj" style="width:655px;">
+        <h1 aos="flip-up">精选设计风格，轻松打造<b>高端网站</b></h1>
+        <p aos="flip-up">资海网络科技集团帮助您容易地建立自己的网站</p>
+    </div>
+    </div>
+</div>
+<!--新闻资讯-->
+{assign name="guid" value="$Request.param.guid|default='news'"}
+<div class="mian">
+    <div class="container">
+        <img src="{$default_path}/images/icon21.png" alt=""/>当前的位置：<a href="{:url('/')}">资海首页</a> > <a href="{:url('news/index')}">新闻资讯</a> > <a href="javascript:;" class="act">{:get_cate_name($guid ? $guid : 'news')}</a>
+    </div>
+</div>
+<div class="news">
+<div class="container">
+        <div class="newsl float_l">
+            {assign name="news" value=":get_article_list($guid ? $guid : 'news',10)"}
+            {volist name="news" id="vo"}
+                <div class="newbox">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td><a href="{$vo.art_url}"><img title="{$vo.title}" class="nopic" src="{$vo.art_img}" alt="{$vo.title}" width="280"/></a></td>
+                        <td class="netd"><a href="{$vo.art_url}">{$vo.title|substr_cn=30}</a>
+                            <span> {$vo.update_time_text} <img src="{$default_path}/images/icon22.png" alt=""/>来源：{$vo.author} <img src="{$default_path}/images/icon23.png"/>{$vo.views}</span>
+                            <p>{$vo.content_desc}</p>
+                        </td>
+                      </tr>
+                    </table>
+                </div> 
+            {/volist}
+           <div class="number">{$news->render()}</div>
+        </div>
+        <div class="succcar float_r">
+            {include file="news/right"}
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{/block}

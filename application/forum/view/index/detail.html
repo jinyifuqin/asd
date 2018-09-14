@@ -1,0 +1,33 @@
+{extend name="base" /}
+{block name="seo"}
+    <title>问道 - 资海商务技术交流社区</title>
+    <meta name="keywords" content="问道,网站开发,济南资海网站" />
+    <meta name="description" content="问道，资海商务技术交流社区！" />
+{/block}
+{block name="content"}
+<div class="container">
+	<div class="col-md-8 topic-title">
+		<h4>{$topic->title}</h4>
+        {if $topic->tags_arr}
+		<ul class="hot-tag-list">
+            {volist name="topic.tags_arr" id="tag"}
+			<li><a href="javascript:;" class="hot-tag-list-tag">{$tag}</a></li>			
+            {/volist}
+		</ul>        
+        {/if}
+		<div class="topic-author"><a href="">{$topic->author}</a>&emsp;发布于 {$topic->update_time_text}</div>
+	</div>
+	<div class="col-md-4">		
+	  	<div class="article-list-attr article-list-attr-plus article-list-recommend ">{$topic.views}<span>浏览</span></div>
+	  	<!-- <div class="article-list-attr article-list-views">252<span>浏览</span></div> -->
+	</div>
+</div>
+<div class="container">
+    <div class="col-md-8 padding-no art_content">
+    	{$topic.content}
+    </div>
+    <div class="col-md-4">
+    	{:widget('Topic/hotTags')}    	
+    </div>
+</div>
+<{/block}

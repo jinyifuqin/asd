@@ -1,0 +1,29 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:hidden name="id" value="$dataEdit.id"}	
+			{html:input name="title" class="input w50" value="$dataEdit.title" addstr='data-validate="required:请输入标题"' label="标题"}
+			{html:editor name="content" id="content" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="职位介绍" }{$dataEdit.content}{/html:editor}
+			{html:textarea name="responsibility" value="$dataEdit.responsibility" class="input" style="height:80px;width:80%" label="岗位职责"}
+			{html:textarea name="claim" value="$dataEdit.claim" class="input" style="height:80px;width:80%" label="任职要求"}
+			{html:textarea name="address" value="$dataEdit.address" class="input" style="height:40px;width:80%" label="任职地点"}
+			{html:textarea name="mark" value="$dataEdit.mark" class="input" style="height:40px;width:80%" label="其他备注"}	
+
+			{html:input name="views" class="input w50" value="$dataEdit.views" label="浏览量" }
+			{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }			
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>				
+		</form>
+		
+{/block}
+{block name="my_script"}
+<script id="uploadImage"></script>
+{/block}

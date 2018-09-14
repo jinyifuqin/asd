@@ -1,0 +1,22 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">	
+			{html:hidden name="id" value="$dataEdit.id"}	
+			{html:input name="brand_name" class="input w50" value="$dataEdit.brand_name" addstr='data-validate="required:请选择品牌名称"' label="品牌名称"}
+			{html:input name="alias_name" class="input w50" value="$dataEdit.alias_name" label="别名"}
+			
+			{html:fileImg name="brand_img" class="input w50" value="$dataEdit.brand_img" label="缩略图"}
+
+			{html:input name="order_id" class="input w50" value="$dataEdit.order_id" label="排序" }		
+			{html:radio name="is_show" value=":config('is_show')" default="$dataEdit.is_show" label="显示" }
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>
+		</form>
+{/block}

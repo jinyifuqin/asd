@@ -1,0 +1,52 @@
+<div class="form-group">
+	<div class="label">
+		<label for="username">规格值：</label>
+	</div>
+	<div class="field table-responsive">
+		<table class="table table-bordered">
+			<tr class="spec_line_" id="spec_line_0">
+				<th>名称</th>
+				<th class="col_spec_color">颜色</th>
+				<th>排序</th>
+				<th>操作</th>
+			</tr>
+			{if condition="!empty($dataEdit->productSpecVal)"}
+			{volist name="$dataEdit->productSpecVal" id="spacVal"}
+			<tr class="spec_line_" id="spec_line_{$i}">
+				<td><input name="spec_val[{$i}][spec_value]" value="{$spacVal.spec_value}" type="text" class="input" placeholder="名称" /></td>
+				<td class="col_spec_color"><input name="spec_val[{$i}][spec_color]" value="{$spacVal.spec_color}" type="text" class="input" placeholder="颜色" /></td>
+				<td>
+					<input name="spec_val[{$i}][id]" type="hidden" value="{$spacVal.id}" />
+					<input name="spec_val[{$i}][order_id]" value="{$spacVal.order_id}" type="text" class="input" placeholder="排序" />
+				</td>
+				<td><button class="button button-del—spec"><span class="icon-minus-circle"></span>删除</button></td>
+			</tr>	
+			{/volist}
+			{/if}
+		</table>
+		<button class="button button-add—spec" type="button"><span class="icon-plus"></span>添加规格</button>				
+	</div>
+</div>
+<style type="text/css">
+	.col_spec_color{display: none;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		var newLineId = $(".spec_line_").last().index();
+		newLineId++;
+		$(".button-add—spec").click(function(event) {
+			var newLineLine = '<tr class="spec_line_" id="spec_line_' + newLineId + '">';									
+				newLineLine += '<td><input name="spec_val[' + newLineId + '][spec_value]" type="text" class="input" placeholder="名称" /></td>';
+				newLineLine += '<td class="col_spec_color"><input name="spec_val[' + newLineId + '][spec_color]" type="text" class="input" placeholder="颜色" /></td>';
+				newLineLine += '<td><input name="spec_val[' + newLineId + '][order_id]" value="1" type="text" class="input" placeholder="排序" /></td>';
+				newLineLine += '<td><button class="button button-del—spec"  type="button"><span class="icon-minus-circle"></span>删除</button></td>';
+				newLineLine += '</tr>';
+			$(".spec_line_").last().after(newLineLine);
+			newLineId++;
+		});
+		$("body").on('click', '.button-del—spec', function(event) {
+			console.log(1);
+			$(this).parents('.spec_line_').remove();			
+		});
+	});
+</script>

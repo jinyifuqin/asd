@@ -1,0 +1,83 @@
+{extend name="index@base" /}
+{block name="seo_title"}{__block__}{/block}
+{block name="content"}
+<div class="zhuce">
+	<div class="zhucecon">
+        <form method="POST" onsubmit="return false;" id="regForm">
+        	<div class="sb1_tab">
+                <div class="sb1_t">
+                    <div class="sb1_tc sb1xly" style="border-top-right-radius:0"><span class="spa1"></span>企业账户</div>
+                    <div class="sb1_tc" style="border-top-left-radius:0"><span class="spa2"></span>个人账户</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="sb1con">
+                    <div class="sb1o">
+                    	<div class="zhubox">
+                    	<div class="zhucb">
+                        	<label>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+                            <input name="user_phone" type="text" class="inp3" placeholder="请填写您的手机号"/>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="zhucb">
+                        	<label>验  证 码：</label>
+                            <input name="" type="text" class="inp4" placeholder="请输入验证码"/>
+                            <input name="" type="submit" class="btn3" value="获取验证码"/>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="zhucb">
+                        	<label>登录密码：</label>
+                            <input name="user_pass" type="password" class="inp3" placeholder="请输入登录密码"/>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="zhucb">
+                        	<label>确认密码：</label>
+                            <input name="user_pass_confirm" type="password" class="inp3" placeholder="请确认登录密码"/>
+                            <div class="clear"></div>
+                        </div>
+                        <p><input name="accept" type="checkbox" value="1" />同意<a href="">《中融保险保注册协议》</a>和<a href="">《隐私政策》</a></p>
+                        <input name="" type="submit" class="btn4" value="立即注册"/>
+                        <p class="spa3">已有账号？<a href="">立即登录</a></p>
+                        </div>
+                    </div>
+                    <div class="sb1o">
+                    	
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".sb1_tab .sb1_t .sb1_tc").click(function(){
+		$(this).addClass("sb1xly").siblings().removeClass("sb1xly");
+		// var bb=$(".sb1_tab .sb1_t .sb1_tc").index($(this));
+		// $(".sb1con .sb1o") .eq(bb) .show() .siblings() .hide();
+		})	
+	   $('.sb1con .sb1o:first').show();	
+	});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    function submitRegForm(){
+        var user_phone = $("input[name=user_phone]").val();
+        if(user_phone == ''){
+            toolTips('手机号不能为空！', "0");return false;
+        }
+        var layer_index = toolLoad();
+        $.post("{:url('user/common/register')}", $("#regForm").serialize(), function(data, textStatus, xhr) {            
+            if(data.code == 1){
+                if(data.url != '') location.href = data.url;
+            }
+            layer.close(layer_index);
+            toolTips(data.msg, data.code);
+        },'json');
+        return false;
+    }    
+    $("#regForm").submit(function(event) {
+        return submitRegForm();
+    });
+}); 
+</script>
+
+{/block}

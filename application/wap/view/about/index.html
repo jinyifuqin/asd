@@ -1,0 +1,49 @@
+{extend name="base" /}
+{block name="content"}
+    <!-- image start -->
+    <div class="image pull"><img src="{:get_cate_img(33)}" alt="" /></div>
+    <!-- image end -->
+    
+    <!-- brief start -->
+    <div class="brief">
+    	<div class="brief_t">
+    		<div class="row ajax_list_nav">
+    			<a class="col-xs-3 drop1 on" data-href="{:url('index_about')}">企业简介</a>
+    			<a class="col-xs-3 drop2" data-href="{:url('index_vision')}">发展愿景</a>
+    			<a class="col-xs-3 drop3" data-href="{:url('index_zhaoshang')}">项目招商</a>
+    			<a class="col-xs-3 drop4" data-href="{:url('index_job')}">人才招聘</a>
+    		</div>
+    	</div>
+    	<div class="brief_b after ajax_list">
+    		<div class="brief_tab tab_1"></div>
+    		<div class="brief_tab tab_2 hide"></div>
+    		<div class="brief_tab tab_3 hide"></div>
+    		<div class="brief_tab tab_4 hide"></div>
+    	</div>
+    </div>
+    <!-- brief end -->
+{/block}
+{block name="script"}
+<script type="text/javascript">
+	$(function(){
+		$(".ajax_list_nav a").click(function(event) {
+			var url = $(this).attr('data-href');
+			var list_div = $(".ajax_list").find('div.brief_tab').eq($(this).index());
+			if(list_div.attr('data-load') == 1) return false;
+			list_div.html('请稍后……');
+			$.get(url, function(data) {
+				list_div.attr('data-load', '1').html(data);
+			});
+		});
+		console.log();
+		if(location.hash.substr(1).length>0){
+			$(".ajax_list_nav a."+location.hash.substr(1)).click();	
+		}else{
+			$(".ajax_list_nav a").first().click();
+		}
+	});
+	window.onhashchange=function(){		
+		$(".ajax_list_nav a."+location.hash.substr(1)).click();					
+	}
+</script>
+{/block}

@@ -1,0 +1,11 @@
+<div class="panel-body panel-search">
+	<form action="" method="get" class="form-x">	    
+	    {html:input name="title" class="input w50" label="标题"}
+		{html:select name="cate_id" option="cateTree" value="id->cate_name" label="所属栏目" selected="$Request.get.cate_id"  ext_attr="cate_model" }	   
+	    {html:radio name="status" value=":config('status')" default="$Request.get.status" label="审核" }
+	    <div class="form-group">
+	    	<div class="label"><label></label></div>
+	        <div class="field"><button class="button" type="submit">搜索</button></div>
+	    </div>
+	</form>
+</div>

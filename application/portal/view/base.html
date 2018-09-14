@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{block name="seo"}{:get_seo()}{/block}
+<link href="{$default_path}/style/style.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="{$default_path}/style/aos.css" />
+<link rel="stylesheet" href="{$default_path}/style/animate.min.css" />
+<link href="{$default_path}/style/common.css" rel="stylesheet"/>
+<link rel="stylesheet" href="{$default_path}/style/idangerous.swiper.css">
+<script type="text/javascript" src="{$default_path}/js/jquery-1.8.0.min.js"></script>
+<script src="{$default_path}/js/idangerous.swiper.js"></script>
+<script type="text/javascript" src="{$default_path}/js/jquery.event.drag-1.5.min.js"></script>
+<script type="text/javascript" src="{$default_path}/js/jquery.touchSlider.js"></script>
+{block name="style"}<!-- 自定义样式 -->{/block}
+</head>
+<body>
+{block name="header"}
+    {:widget('Common/header')} 
+{/block}
+
+{block name="content"}{/block}
+
+{block name="footer"}
+    {:widget('Common/footer')} 
+{/block}
+
+<script src="{$common_path}/layer/layer.js"></script>
+<script src="{$common_path}/js/tool.js"></script>
+<script src="{$default_path}/js/index.js"></script>
+{block name="script"}<!-- 自定义脚本 -->{/block}
+</body>
+</html>

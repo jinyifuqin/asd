@@ -1,0 +1,37 @@
+{extend name="index@base" /}
+{block name="seo_title"}{__block__}{/block}
+{block name="content"}
+<div class="denglu">
+	<div class="denglucon">
+    	<h1>用户登录</h1>
+        <form method="post" id="loginForm">
+        	<div class="dlu">
+            	<input name="user_name" type="text" class="inp2" placeholder="手机"/>
+                <input name="user_pass" type="password" class="inp2" placeholder="密码"/>
+                <input name="" type="submit" class="btn2" value="立即登录"/>
+                <p>没有账号？<a href="{:url('user/common/register')}">立即注册</a><a href="" class="wmi">忘记密码</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    function submitLoginForm(){
+        var user_name = $("input[name=user_name]").val();
+        var layer_index = toolLoad();
+        $.post("{:url('user/common/login')}", $("#loginForm").serialize(), function(data, textStatus, xhr) {            
+            if(data.code == 1){
+                if(data.url != '') location.href = data.url;
+            }
+            layer.close(layer_index);
+            toolTips(data.msg, data.code);
+        },'json');
+        return false;
+    }    
+    $("#loginForm").submit(function(event) {
+        return submitLoginForm();
+    });
+}); 
+</script>
+
+{/block}

@@ -1,0 +1,27 @@
+<div class="header">
+    <div class="headbar">
+        <div class="container">
+        {$setting.comp_name}
+        <p><a href="javascript:;" onclick="oollection();">收藏网站</a><a href="{:url('/about')}">关于我们</a><a href="{:url('/about/contact')}">联系我们</a></p>
+        <div class="clear"></div>
+        </div>
+    </div>
+    <div class="headt container">
+        <a href="" class="logo" aos="fade-up"><img src="{$default_path}/images/logo.png" alt="" width="201"/>
+            <h1>知名建站品牌<span>一站式整合营销企业服务商</span></h1>
+            <div class="clear"></div>
+        </a>
+        <div class="phone"><h1><img src="{$default_path}/images/icon1.png" alt=""/>咨询服务热线</h1><p>{$setting.telephone}</p></div>
+        <div class="clear"></div>
+    </div>
+    <div class="nav">
+        <div class="container">
+            <ul aos="slide-left">
+                {volist name=":get_nav_child('main')" id="vo"} 
+                <li><a href="{$vo.nav_link}" target="{$vo.nav_target}">{$vo.nav_name}</a></li>                
+                {/volist}
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>

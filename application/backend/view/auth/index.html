@@ -1,0 +1,32 @@
+{extend name="base" /}
+{block name="content_title"}权限管理{/block}
+{block name="content_btn_top"}
+{html:button href=":url('add')"  }<span class="icon-plus-square-o"></span> 添加用户组{/html:button} 
+{/block} 
+{block name="content_body"}
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th width="5%">ID</th>
+      <th>用户组</th>
+      <th>描述</th>
+      <th>更新时间</th>      
+      <th>状态</th>
+      <th width="20%">操作</th>
+    </tr>
+    {volist name='dataList' id='vo'}
+    <tr>
+      <td>{$vo->id}</td>
+      <td>{$vo->name}</td>
+      <td>{$vo->description|default="--"}</td>      
+      <td>{$vo->update_time_text}</td>
+      <td><span class="tag_ststus_show" tag-value="{$vo->status}"></span></td>
+      <td><div class="button-group"> 
+      <a class="button border-main" href="{:url('access','id='.$vo->id)}"><span class="icon-edit"></span> 授权</a>
+      <a class="button border-main" href="{:url('edit','id='.$vo->id)}"><span class="icon-edit"></span> 修改</a>
+      <a class="button border-red button-delete need-confirm" href="{:url('delete','id='.$vo->id)}"><span class="icon-trash-o"></span> 删除</a> </div></td>
+    </tr>
+	{/volist}
+  </table>
+</div>
+{/block}

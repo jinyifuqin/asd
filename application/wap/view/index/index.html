@@ -1,0 +1,104 @@
+{extend name="base" /}
+{block name="content"}
+<!-- banner start -->
+<div class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        	{volist name=":get_ad_list(2)" id="vo"}                            
+	            <div class="swiper-slide"><a href="{$vo.ad_link}" target="{$vo.ad_target}" title="{$vo.ad_name}"><img src="{$vo.ad_img}" alt="{$vo.ad_name}" /></a></div>
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 5000,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        loop: true,
+        autoplayDisableOnInteraction: false,
+    })
+    </script>
+</div>
+<!-- banner end -->
+<!-- nav start -->
+<div class="nav">
+    <div class="container">
+        <div class="row">
+            <div class="colxs col-xs-3">
+                <a href="{:url('about/index')}"><img src="{$style_path}/images/n1.png" alt="" /></a>
+                <p>企业简介</p>
+            </div>
+            <div class="colxs col-xs-3">
+                <a href="{:url('about/index#drop2')}"><img src="{$style_path}/images/n2.png" alt="" /></a>
+                <p>发展愿景</p>
+            </div>
+            <div class="colxs col-xs-3">
+                <a href="{:url('about/index#drop3')}"><img src="{$style_path}/images/n3.png" alt="" /></a>
+                <p>项目招商</p>
+            </div>
+            <div class="colxs col-xs-3">
+                <a href="{:url('about/index#drop4')}"><img src="{$style_path}/images/n4.png" alt="" /></a>
+                <p>人才招聘</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- nav end -->
+<!-- newest start -->
+<div class="newest">
+    <div class="container after">
+        <div class="col-xs-3 newest_l">
+            <a href=""><img src="{$style_path}/images/new.png" alt="" /></a>
+        </div>
+        <div class="col-xs-9 newest_r">
+            <ul>
+            {volist name=":get_article_list(36,5)" id="vo"}
+                <li class="after"><a href="{:url('news/detail','id='.$vo['id'])}"><p>{$vo.title}</p><span>{$vo.update_time|date='m-d',###}</span></a></li>
+            {/volist}
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    $(".newest_r").Scroll({
+        direction: "y"
+    });
+})
+</script>
+<!-- newest end -->
+<div class="shu"></div>
+<!-- produce start -->
+<div class="produce">
+    <div class="tit">
+        <h1>我们的业务</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+        	{volist name=":get_cate_child(37)" id="vo"}				    
+            <div class="col-xs-6 pro_colb" aos="fade-up">
+                <a href="{:url('business/detail','id='.$vo['id'])}">
+                    <img src="{$vo.cate_img}" alt="{$vo.cate_name}" />
+                    <p><img src="{$style_path}/images/y.png" alt="" />{$vo.cate_name}<span><img src="{$style_path}/images/jian.png" alt="" /></span></p>
+                </a>
+            </div>
+			{/volist}
+        </div>
+    </div>
+</div>
+<div class="shu"></div>
+<!-- produce end -->
+<!-- link start -->
+<div class="link">
+    <div class="tit">
+        <h1>战略合作</h1>
+    </div>
+    <div class="container">
+		{volist name=":get_link(2)" id="vo"}	    	
+        <div class="col-xs-4" aos="flip-up"><a href="{$vo.link_addr}" target="{$vo.link_target}" title="{$vo.link_name}"><img src="{$vo.link_img}" alt="" /></a></div>
+	    {/volist}
+    </div>
+</div>
+<!-- link end -->
+{/block}

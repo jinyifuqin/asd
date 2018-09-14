@@ -1,0 +1,62 @@
+{extend name="base" /}
+{block name="content"}    
+<!--banner-->
+<div class="banner" style="height:324px; background:url({$style_path}/images/ban1.jpg) no-repeat center center;">
+	<div class="succcase container">
+    	<img src="{$style_path}/images/icon8.png" alt="" class="succimg float_l" width="386" aos="flip-left"/>
+        <div class="succr float_r" aos="fade-down">
+        	<h1>精选设计风格，轻松打造<b>高端网站</b></h1>
+            <p>资海网络科技集团帮助您容易地建立自己的网站</p>
+            <ul>
+            	<li><img src="{$style_path}/images/icon9.png" alt="" width="57"/>
+                	<p>100%<br>满意保证</p>
+                </li>
+                <li><img src="{$style_path}/images/icon10.png" alt="" width="57"/>
+                	<p>24/7<br>免费技术支持</p>
+                </li>
+                <li><img src="{$style_path}/images/icon11.png" alt="" width="57"/>
+                	<p>设计师<br>量身为您打造</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{assign name="article" value=":get_article($Request.param.id)" /}
+<!--成功案例-->
+<div class="succ_case">
+	<div class="container">
+    	<div class="succcal float_l">
+        	<h1 class="h1t">案例展示</h1>
+            <div class="succl">
+            	<p>案例名称： {$article.title}</p>
+                <p>案例网址： <a href="{$article.art_link}" target="_blank">{$article.art_link}</a></p>
+                <p>所属行业： {$article.cate.cate_name} </p>
+                <a href="{$article.art_link}" target="_blank" class="yanshi"><img src="{$style_path}/images/icon12.png" alt=""/>在线演示</a>
+            </div>
+            <h1 class="h1t">案例描述</h1>
+            <div class="succl">
+            	{$article.content}
+            </div>
+            <div class="pian">
+            	{notempty name="article.next"}<p>上一篇：<a href="{$article.next.art_url}">{$article.next.title} </a></p>{/notempty}
+                {notempty name="article.prev"}<p>下一篇：<a href="{$article.prev.art_url}">{$article.prev.title}</a></p>{/notempty}             	
+            </div>
+        </div>
+        <div class="succcar float_r">        	
+            <div class="sucbox1">
+        		<h1 class="sutit">热门案例</h1>
+                <ul>
+                	{volist name=":get_article_list('case',3,'hot')" id="vo"}
+                    <li title="{$vo.title}"><a href="{:url('/case/'.$vo['id'])}"><img src="{$vo.art_img}" class="nopic" alt="{$vo.title}" width="242"/>
+                        <h1>{$vo.title|substr_cn=14} </h1>
+                        <p>{$vo.content_desc|substr_cn=26}</p>
+                    </a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{/block}

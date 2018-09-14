@@ -1,0 +1,20 @@
+{switch name="vo.type" }
+    {case value="input"}
+        {html:input name="$vo.id" class="input w50" value="$vo.value" label="$vo.title" note="$vo.desc"}
+    {/case}
+    {case value="password"}
+        {html:input name="$vo.id" type="password" class="input w50" value="$vo.value" label="$vo.title" note="$vo.desc"}
+    {/case}
+    {case value="textarea"}
+        {html:textarea name="$vo.id" class="input w80" value="$vo.value" label="$vo.title" note="$vo.desc"}
+    {/case}
+    {case value="img"}
+        {html:fileImg name="$vo.id" id="$vo.id" value="$vo.value" label="$vo.title" note="$vo.desc"}         
+    {/case}
+    {case value="editor"}
+        {html:editor name="$vo.id" id="$vo.id" addstr="style='width:100%;height:300px;max-width:1000px;'" type="ueditor" label="$vo.title" note="$vo.desc" }{$vo.value}{/html:editor}
+    {/case}
+    {case value="radio"}
+        {html:radio name="$vo.id" value=":config('radio')" default="$vo.value" label="$vo.title" note="$vo.desc"}                      
+    {/case}
+{/switch}

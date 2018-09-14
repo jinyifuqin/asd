@@ -1,0 +1,24 @@
+{extend name="base" /}
+{block name="content_title"}添加/编辑{/block}
+{block name="content_body"}	
+		<form method="post" class="form-x" action="">		
+			{html:hidden name="id" value="$dataEdit.id"}	
+			{html:input name="link_name" class="input w50" value="$dataEdit.link_name" addstr='data-validate="required:请输入标题"' label="标题"}
+			{html:radio name="link_type" value=":config('link_type')" default="$dataEdit.link_type" label="链接位置" }	
+			{html:radio name="link_target" value=":config('link_target')" default="$dataEdit.link_target" label="打开方式" }				
+
+			{html:input name="link_addr" class="input w50" value="$dataEdit.link_addr" label="链接地址"}
+			{html:fileImg name="link_img" class="input w50" value="$dataEdit.link_img" label="链接图片"}			
+			
+			{html:input name="order_id" class="input w50" value="1" label="排序" }
+			{html:radio name="is_show" value=":config('is_show')" default="1" label="显示" }
+			<div class="form-group">
+				<div class="label">
+					<label></label>
+				</div>
+				<div class="field">
+					{html:button class="bg-main icon-check-square-o" } 提交{/html:button}
+				</div>
+			</div>				
+		</form>		
+{/block}

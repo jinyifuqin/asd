@@ -1,0 +1,21 @@
+<!--banner-->
+<div class="banner" style="height:318px; background:url({$default_path}/images/ban.jpg) no-repeat center center;">
+    <div class="container">
+        <div class="bghj">
+            <h1 aos="flip-up">中国领先的企业<b>信息化服务商</b></h1>
+            <p aos="flip-up">选择资海 选择品质</p>
+        </div>
+    </div>
+</div>
+<!--办公环境-->
+<div class="naver">
+    <div class="container">
+        <ul>
+            {assign name="guid" value="$Request.param.guid ? $Request.param.guid : 'intro'"}
+            {volist name=":get_nav_child('about')" id="vo"} 
+            <li {if $guid eq $vo['guid']}class="act"{/if}><a href="{$vo.nav_link|default=url('/about/'.$vo['guid'])}" target="{$vo.nav_target}">{$vo.nav_name}</a></li>
+            {/volist}
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>

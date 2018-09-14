@@ -1,0 +1,13 @@
+{extend name="base" /}
+{block name="content"}
+	    <!-- cooperation start -->
+	  	<div class="cooperation">
+  		<div class="row">
+	  	{volist name=":get_link(2)" id="vo" mod="2"}	    		
+	  			{if condition="$i != 1"}{eq name="mod" value="0"}</div><div class="row">{/eq}{/if}
+	  			<a class="col-xs-6" href="{$vo.link_addr}" target="{$vo.link_target}"><img src="{$vo.link_img}" alt="{$vo.link_name}" /></a>
+    	{/volist}
+  		</div>
+		</div>
+	    <!-- cooperation end -->
+{/block}

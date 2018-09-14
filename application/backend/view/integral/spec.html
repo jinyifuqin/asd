@@ -1,0 +1,124 @@
+<script type="text/javascript">
+	$(function(){
+		var pro_spec_value = '{$dataEdit->pro_spec_value|default=''}';
+		var pro_ext = {if !empty($dataEdit->pro_ext)}eval('({$dataEdit->pro_ext})'){else}{}{/if};
+		// console.log(pro_ext);
+		$("select[name=pro_cate_id]").change(function(event) {
+			var cate_id = $(this).val();
+			if(!(cate_id>0)) return false;
+			$.ajax({
+				url: '{:url("get_spec")}',
+				type: 'POST',
+				dataType: 'json',
+				data: {cate_id: cate_id},
+			}).always(function(data) {
+				var lineHtml = '';
+				$.each(data, function(index, val) {
+					lineHtml += '<div class="form-group"><div class="label"><strong>'+val.spec_name+'</strong></div><div class="field">';
+					$.each(val.spec_val, function(index, val) {
+						lineHtml += '<label class="button"><input id="spec_val_'+index+'" name="spec_val" value="'+index+'" type="checkbox">'+val+'</label>';
+					});
+					lineHtml += '</div></div>';
+				});
+				$('.pro_spec').html(lineHtml);
+				if(pro_spec_value!=''){
+					pro_spec_value = pro_spec_value.split(',');
+					$.each(pro_spec_value, function(index, val) {						
+						$("input#spec_val_"+val).click();
+					});
+				}
+			});
+		});
+		$("select[name=pro_cate_id]").change();
+		$(".pro_spec").on('click', 'input[name=spec_val]', function(event) {
+			// 是否选择完整规格
+			var spec_sel = true;
+			var spec_val_all = new Array;
+			$(".pro_spec").find('.form-group').each(function(index, el) {
+				$(this).find('input[type=checkbox]').each(function(index, el) {
+					spec_val_all[$(this).val()] = $(this).parent().text();
+				});
+				if(!$(this).find('input[type=checkbox]').is(':checked')){
+					spec_sel = false;
+					console.log('全选择完整规格');
+				}
+			});				
+			if(spec_sel == true){
+				var spec_line_name = '';
+				$(".pro_spec").find('.form-group').find('div.label').each(function(index, el) {
+					spec_line_name += '<th>'+$(this).text()+'</th>';
+				});
+				if(spec_line_name.length > 0){
+					spec_line_name += '<th>价格</th>';
+					$(".spec_line_name").html(spec_line_name);
+				}
+				//排列组合
+				var sepc_arr = new Array;
+				$(".pro_spec").find('.form-group').each(function(index, el) {						
+					var line = new Array;
+					$(this).find('div.field input[name=spec_val]').each(function(index, el) {
+						if($(this).is(':checked')){
+							line.push($(this).val());
+						}
+					});
+					sepc_arr.push(line);
+					// sepc_name[index] = $(this).text();
+				});					
+				var new_spec= doExchange(sepc_arr);					
+				// console.log(new_spec);
+				var spec_line_val = '';
+				$.each(new_spec, function(index, val) {
+					spec_line_val += '<tr>';
+					var var_tmp = val.split(',');
+					$.each(var_tmp, function(index, v) {
+						spec_line_val += '<td><label class="label wauto">'+spec_val_all[v]+'</label></td>';
+					});
+					var pro_spec_id = var_tmp.join('');
+					var price = '';
+					spec_line_val += '<td>';
+
+					if(pro_ext[pro_spec_id] && pro_ext[pro_spec_id] != '' && pro_ext[pro_spec_id] != 'undefined'){
+						price = pro_ext[pro_spec_id]['spec_price'];
+						spec_line_val += '<input name="pro_spec['+pro_spec_id+'][id]" value="'+pro_ext[pro_spec_id]['id']+'" type="hidden"/>';
+					}
+					spec_line_val += '<input name="pro_spec['+pro_spec_id+'][spec_value]" value="'+val+'" type="hidden"/>';
+					spec_line_val += '<input name="pro_spec['+pro_spec_id+'][spec_price]" class="input" type="text" value="'+price+'"></td>';
+					spec_line_val += '</tr>';
+				});
+				$('.spec_line_val').html(spec_line_val);
+			}
+			// if($(this).is(':checked'))
+			// console.log($(this).val());
+		});
+		
+		function doExchange(doubleArrays){    
+			var len=doubleArrays.length;
+			if(len>=2){        
+				var len1 = doubleArrays[0].length;       
+				var len2 = doubleArrays[1].length;        
+				var newlen = len1*len2;        
+				var temp = new Array(newlen);        
+				var index = 0;        
+				for(var i = 0;i < len1; i++)
+				{          
+					for(var j=0; j<len2; j++)
+					{                
+						temp[index]=doubleArrays[0][i]+","+doubleArrays[1][j];                
+						index++;            
+					}       
+				}        
+				var newArray = new Array(len-1);        
+				for(var i=2; i < len; i++)
+				{            
+					newArray[i-1] = doubleArrays[i];       
+				}        
+				newArray[0] = temp;        
+				return doExchange(newArray); 
+			}    
+			else
+			{        
+				return doubleArrays[0];    
+			} 
+		}
+	});
+</script>

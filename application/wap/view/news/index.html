@@ -1,0 +1,51 @@
+{extend name="base" /}
+{block name="content"}
+	<!-- news start -->
+	<div class="news">
+		<div class="news_t">
+			<div class="row">
+				{volist name=":get_cate_child(36)" id="vo"}
+					<a href="{:url('news/index','id='.$vo['id'])}" class="col-xs-6 {if $Request.param.id eq $vo.id}on{/if}"><em><img class='img_show' src="{$style_path}/images/ne{$i}.png" alt="" /><img src="{$style_path}/images/ne{$i}_x.png" alt="" class="img_hide hide" /></em>{$vo.cate_name}</a>				
+				{/volist}
+			</div>
+		</div>
+		<div class="news_b">
+			<ul class="ajax_list"></ul>
+		</div>
+		<div class="news_b hide">
+			<ul class="ajax_list"></ul>	    		
+		</div>
+    	<a class="more getMoreList" href='javascript:;'>请稍后……</a>
+	</div>
+	<!-- news end -->
+{/block}
+{block name="script"}
+	<script type="text/javascript">
+		$(function(){			
+			var listUrl = "{:url('index_ajax')}";
+			var page = 1;
+			var hasMore = true;
+			$(".getMoreList").click(function(event) {
+				var that = $(this);		
+				if(!hasMore){return false;}	
+				$.ajax({
+					url: listUrl,
+					type: 'GET',
+					dataType: 'json',
+					data: {'page': page, 'id': '{$Request.param.id}'},
+				}).always(function(data) {
+					$(".ajax_list").append(data.html);
+					total = data.lastPage
+					if(page >= total){
+						hasMore = false;
+						that.html('没有了').removeClass('getMoreList');
+					}else{
+						that.html('查看更多').removeClass('getMoreList');
+						page++;
+					}
+				});			
+			});
+			$(".getMoreList").click();
+		});
+	</script>
+{/block}

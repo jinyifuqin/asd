@@ -1,0 +1,84 @@
+<div class="abl">
+	<div class="titl">
+    	<!--<img src="{$default_path}/images/icon35.png" alt=""/>
+        <h1>会员中心</h1>
+        <p>Member Center</p>-->
+        <img src="{$default_path}/images/tit1.png" alt=""/>
+    </div>
+    <div class="huiyu">
+    	<div class="hybox">
+            <h1>我的订单<i></i></h1>
+            <div class="huxl">
+                <a href="{:url('order/index')}">保障中</a>
+                <a href="{:url('order/index')}">未完成</a>
+                <a href="{:url('order/index')}">待续保</a>
+                <a href="{:url('order/index')}">处理中</a>
+            </div>
+        </div>
+        <div class="hybox">
+            <h1>个人信息<i></i></h1>
+            <div class="huxl">
+                <a href="{:url('profile/index')}">个人信息</a>
+                <a href="{:url('contact/index')}">常用联系人</a>
+                <a href="{:url('deliver/index')}">收货地址</a>
+                <a href="{:url('auth/index')}">账户及密码</a>
+                <a href="{:url('message/index')}">消息中心</a>
+            </div>
+        </div>
+        <div class="hybox">
+            <h1>我的钱包<i></i></h1>
+            <div class="huxl">
+                <a href="{:url('coupon/index')}">我的优惠券</a>
+                <a href="{:url('integral/index')}">我的积分</a>
+            </div>
+        </div>
+    </div>            
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".hybox h1").click(function() {
+        if ($(this).parent().find("div.huxl").is(":hidden")) {
+            $(this).parent().find("div.huxl").slideDown();
+            $(this).parent().siblings().find('.huxl').slideUp();
+            $(this).parent().siblings().find('h1').removeClass('act');
+            $(this).parent().siblings().find('h1 i').css("backgroundPosition", "center top");
+            $(this).addClass('act');
+            $(this).find("i").css("backgroundPosition", "center -22px");
+        } else {
+            $(this).parent().find("div.huxl").slideUp();
+            $(this).parent().siblings().find('.huxl').slideUp();
+            $(this).removeClass('act');
+            $(this).find("i").css("backgroundPosition", "center top");
+        }
+    });
+    $(".sb3_tab .sb3_t .sb3_tc").click(function(){
+        $(this).addClass("sb3xly").siblings().removeClass("sb3xly");
+        var bb=$(".sb3_tab .sb3_t .sb3_tc").index($(this));
+        $(".sb3con .sb3o") .eq(bb) .fadeIn(600) .siblings() .hide();
+        })  
+    $('.sb3con .sb3o:first').show();
+    $('.quanyi').hover(function(){
+        $(this).find('.qyicon').slideDown(0);
+        },function(){
+            $(this).find('.qyicon').slideUp(0);
+            })
+        
+    $('.sb3o th').click(function(){
+        $(this).find('.zhuant').slideToggle(0);
+        })      
+            
+     $(".sb3o .ztt .zhuant li").click(function(){
+        var text = $(this).find("a").text();
+        $(".sb3o .ztt span").html(text);
+    });
+    // 默认菜单展开
+    $(".huxl a").each(function(index, el) {
+        if(location.href.indexOf($(this).attr('href')) > 0){
+            if(!$(this).parents('.hybox').find('h1').hasClass('act')){
+                $(this).addClass('active').parents('.hybox').find('h1').click();
+            }
+        }
+    });
+
+});
+</script>

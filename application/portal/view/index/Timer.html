@@ -1,0 +1,16 @@
+{extend name="base" /}
+{block name="content"}
+	<style type="text/css">
+		.timer{ height:600px; }
+	</style>
+	<script type="text/javascript" src="__STATIC__common/laydate/laydate.js"></script>
+	<div class="timer">
+		<input type="text" name="" id="test-n1">
+		<script type="text/javascript">
+			laydate.render({
+			  	elem: '#test-n1'
+			  	,position: 'static'
+			});
+		</script>
+	</div>
+{/block}
